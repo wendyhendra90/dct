@@ -1,11 +1,12 @@
 .form{
-    min-width: fit-content;
-    max-width: 35%;
+    width: 40%;
     margin: auto;
     border: 1px lightgrey solid;
 }
 .form-control{
-    min-width: fit-content;
-    max-width: 30%;
+    width: 200px;
     margin: auto;
+}
+button{
+    background-color: black;color: white;
 }

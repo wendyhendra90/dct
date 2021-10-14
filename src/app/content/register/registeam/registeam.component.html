@@ -6,20 +6,20 @@
         <div class="form mt-2 mb-5">
             <form [formGroup]="formregis" class="text-center" ngNativeValidate>
                   <div class="form-group">
-                    <label class="lebel">Team Classification</label><br>
+                    <label class="lebel"><b>Team Classification</b></label><br>
                     <select formControlName="teamclassification" required class="form-control">
                         <option value="Indonesian Team">Indonesian Team</option>
                         <option value="International Team">International Team</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Team Name</label><br>
+                    <label><b>Team Name</b></label><br>
                     <input formControlName="teamname" class="form-control" type="text" placeholder="e.g. x team" required>
                     <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
                   </div>
 
                   <div class="form-group">
-                    <label>Team Birth Category</label><br>
+                    <label><b>Team Birth Category</b></label><br>
                     <select formControlName="teamcategory" class="form-control" required>
                         <option value="U10(birth 2011-2012)">U10(birth 2011-2012)</option>
                         <option value="U11(birth 2010-2011)">U11(birth 2010-2011)</option>
@@ -32,8 +32,8 @@
                         <!--  pattern="[08][0-9]{9,}" -->
                   </div>
 
-                  <div class="mt-3">
-                    <button class="btn btn-lg btn-primary " (click)="getval()" type="submit">Input</button>
+                  <div class="mt-3 mb-2">
+                    <button class="btn btn-lg" (click)="getval()" type="submit">Input</button>
                   </div>
             </form>
         </div>
