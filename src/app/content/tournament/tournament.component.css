@@ -1,0 +1,7 @@
+.content{
+  width: 80%;
+  margin:auto
+}
+mat-expansion-panel-header{
+  border: 1px darkgray solid;
+}

@@ -1,0 +1,11 @@
+.form{
+    min-width: fit-content;
+    max-width: 35%;
+    margin: auto;
+    border: 1px lightgrey solid;
+}
+.form-control{
+    min-width: fit-content;
+    max-width: 30%;
+    margin: auto;
+}

@@ -1,0 +1,25 @@
+<div class="header">
+    <div class="menus">
+        <mat-toolbar>
+            <span><img style="height: 100px;" src="../../assets/pngLogoDCT_DarkBackground.png" alt="logo dctsport"></span>
+            <div class="spacer"></div>
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <a mat-button href="">HOME</a>
+                <a mat-button href="/tournament">TOURNAMENT</a>
+                <a mat-button href="/dctacademy">DCT ACADEMY</a>
+                <a mat-button [matMenuTriggerFor]="regis">REGISTER</a>
+                <mat-menu #regis="matMenu">
+                    <a href="/registeam" mat-menu-item>Register Team</a>
+                    <a href="/regisplayer" mat-menu-item>Register Player</a>
+                    <a href="/regisnonplayer" mat-menu-item>Register Non-Player</a>
+                </mat-menu>
+                <a mat-button href="/wonderfulindonesia">WONDERFUL INDONESIA</a>
+                <a mat-button href="/news">NEWS</a>
+                <a mat-button href="https://web.buattoko.id/dctsport/">SHOPS</a>
+            </mat-button-toggle-group>
+        </mat-toolbar>
+    </div>
+    <div class="banner">
+        <img src="../../assets/Banner depan.jpg" style="width: 100%;">
+    </div>
+</div>

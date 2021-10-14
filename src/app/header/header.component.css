@@ -1,0 +1,11 @@
+
+.menus mat-toolbar{
+    background-color: black;
+    height: fit-content;
+}
+.menus a{
+    color: white;
+}
+.spacer{
+    flex:1 1 auto;
+}
