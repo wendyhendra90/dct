@@ -1,0 +1,12 @@
+.form{
+    width: 40%;
+    margin: auto;
+    border: 1px lightgrey solid;
+}
+.form-control{
+    width: 70%;
+    margin: auto;
+}
+button{
+    background-color: black;color: white;
+}

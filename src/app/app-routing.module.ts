@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DctacademyComponent } from './content/dctacademy/dctacademy.component';
 import { HomeComponent } from './content/home/home.component';
+import { LoginComponent } from './content/login/login.component';
 import { NewsComponent } from './content/news/news.component';
+import { DatanonplayerComponent } from './content/register/data/datanonplayer/datanonplayer.component';
+import { DataplayerComponent } from './content/register/data/dataplayer/dataplayer.component';
+import { DatateamComponent } from './content/register/data/datateam/datateam.component';
+import { DoneregisComponent } from './content/register/doneregis/doneregis.component';
 import { RegisnonplayerComponent } from './content/register/regisnonplayer/regisnonplayer.component';
 import { RegisplayerComponent } from './content/register/regisplayer/regisplayer.component';
 import { RegisteamComponent } from './content/register/registeam/registeam.component';
@@ -21,6 +26,11 @@ const routes: Routes = [
   {path:'registeam',component:RegisteamComponent},
   {path:'regisplayer',component:RegisplayerComponent},
   {path:'regisnonplayer',component:RegisnonplayerComponent},
+  {path:'doneregis',component:DoneregisComponent},
+  {path:'datateam',component:DatateamComponent},
+  {path:'dataplayer',component:DataplayerComponent},
+  {path:'datanonplayer',component:DatanonplayerComponent},
+  {path:'login',component:LoginComponent},
 ];
 
 @NgModule({

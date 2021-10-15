@@ -12,10 +12,17 @@
                     <a href="/registeam" mat-menu-item>Register Team</a>
                     <a href="/regisplayer" mat-menu-item>Register Player</a>
                     <a href="/regisnonplayer" mat-menu-item>Register Non-Player</a>
+                    <a mat-menu-item [matMenuTriggerFor]="data">Data</a>
+                </mat-menu>
+                <mat-menu #data="matMenu">
+                    <a href="/datateam" mat-menu-item>Data Team</a>
+                    <a href="/dataplayer" mat-menu-item>Data Player</a>
+                    <a href="/datanonplayer" mat-menu-item>Data Non-player</a>
                 </mat-menu>
                 <a mat-button href="/wonderfulindonesia">WONDERFUL INDONESIA</a>
                 <a mat-button href="/news">NEWS</a>
                 <a mat-button href="https://web.buattoko.id/dctsport/">SHOPS</a>
+                <a mat-button href="/login">LOGIN</a>
             </mat-button-toggle-group>
         </mat-toolbar>
     </div>

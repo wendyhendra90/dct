@@ -4,7 +4,7 @@
             <mat-divider style="color: #2196f3; background-color: #2196f3;height: 2px;width: 20%;margin: auto;" class="mb-3">
             </mat-divider>
         <div class="form mt-2 mb-5">
-            <form [formGroup]="formregis" class="text-center" ngNativeValidate>
+            <form [formGroup]="formregis" (ngSubmit)="onSubmit()" class="text-center" ngNativeValidate>
                   <div class="form-group">
                     <label class="lebel"><b>Team Classification</b></label><br>
                     <select formControlName="teamclassification" required class="form-control">
@@ -33,7 +33,7 @@
                   </div>
 
                   <div class="mt-3 mb-2">
-                    <button class="btn btn-lg" (click)="getval()" type="submit">Input</button>
+                    <button class="btn btn-lg" type="submit">Input</button>
                   </div>
             </form>
         </div>

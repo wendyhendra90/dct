@@ -14,8 +14,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
 
-//import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './auth.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +33,12 @@ import { NewsComponent } from './content/news/news.component';
 import { RegisteamComponent } from './content/register/registeam/registeam.component';
 import { RegisplayerComponent } from './content/register/regisplayer/regisplayer.component';
 import { RegisnonplayerComponent } from './content/register/regisnonplayer/regisnonplayer.component';
+import { LoginComponent } from './content/login/login.component';
+import { DoneregisComponent } from './content/register/doneregis/doneregis.component';
+import { DatateamComponent } from './content/register/data/datateam/datateam.component';
+import { DataplayerComponent } from './content/register/data/dataplayer/dataplayer.component';
+import { DatanonplayerComponent } from './content/register/data/datanonplayer/datanonplayer.component';
+
 
 const material=[
   MatExpansionModule,
@@ -53,6 +61,8 @@ const material=[
   MatTabsModule,
   FormsModule,
   ReactiveFormsModule,
+  MatTableModule,
+  MatSortModule,
 ];
 
 @NgModule({
@@ -67,20 +77,26 @@ const material=[
     NewsComponent,
     RegisteamComponent,
     RegisplayerComponent,
-    RegisnonplayerComponent
+    RegisnonplayerComponent,
+    LoginComponent,
+    DoneregisComponent,
+    DatateamComponent,
+    DataplayerComponent,
+    DatanonplayerComponent
   ],
   imports: [
     material,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   exports:[material],
   providers: [
-    //{
-    // provide: HTTP_INTERCEPTORS,
-    // useClass: AuthInterceptor,
-    // multi: true}
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true}
   ],
   bootstrap: [AppComponent]
 })

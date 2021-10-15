@@ -1,7 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-
-
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -16,18 +15,26 @@ export class RegisteamComponent implements OnInit {
     teamcategory: new FormControl(''),
   });
   constructor(
+    private route:ActivatedRoute,
+    private router:Router,
+    private http: HttpClient,
   ) { }
 
   ngOnInit(): void {
   }
-  getval(){
+  onSubmit(){
     const data={
-      name:this.formregis.get('teamclassification')?.value,
-      email:this.formregis.get('teamname')?.value,
-      phone_number:this.formregis.get('teamcategory')?.value,
+      teamclassification:this.formregis.get('teamclassification')?.value,
+      teamname:this.formregis.get('teamname')?.value,
+      teamcategorys:this.formregis.get('teamcategory')?.value,
     }
     console.warn(data)
-
+    if(confirm("Apakah data sudah benar?")){
+      alert("Data berhasil");
+      this.router.navigate(['/doneregis']);
+    }else{
+      alert("Silahkan perbaiki datanya")
+    }
     // this.http.post('https://emaillead.aturtoko.id/api/v1/subscriber', data).subscribe((res:any)=>
     //     { console.log(res);
     //       if(res.success){
