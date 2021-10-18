@@ -7,66 +7,66 @@
             <form [formGroup]="formregis" (ngSubmit)="onSubmit()" class="text-center" ngNativeValidate>
                 <div class="col2">
                     <div class="form-group">
-                        <label><b>No Anggota DCT</b></label><br>
+                        <label><b>DCT Registered Number</b></label><br>
                         <input formControlName="noanggota" class="form-control" type="text" placeholder="00000/yyyy/(ID/TR)" required>
                     </div>
                     <div class="form-group">
-                        <label><b>No. Handphone</b></label><br>
+                        <label><b>Phone Number</b></label><br>
                         <input formControlName="nohp" class="form-control" type="text"  required>
                     </div>
                     <div class="form-group">
-                        <label><b>Cabang Olahraga</b></label><br>
+                        <label><b>Sports</b></label><br>
                         <select formControlName="cabangolahraga" class="form-control" required>
-                            <option value="Pelatih">Sepakbola</option>
-                            <option value="Official">Lain-lain...</option>
+                            <option value="Pelatih">Soccer</option>
+                            <option value="Official">Etc...</option>
                         </select>
                             <!--  pattern="[08][0-9]{9,}" -->
                     </div>
                     <div class="form-group">
-                        <label><b>Nomor Induk Siswa Nasional</b></label><br>
+                        <label><b>Student Registered Number</b></label><br>
                         <input formControlName="nisn" class="form-control" type="text"  required>
                     </div>
                     <div class="form-group">
-                        <label><b>Kebangsaan</b></label><br>
+                        <label><b>Nationality</b></label><br>
                         <input formControlName="kebangsaan" class="form-control" type="text"  required>
                     </div>
                     <div class="form-group">
-                        <label><b>Tinggi Badan(Opsional)</b></label><br>
+                        <label><b>Height(Optional)</b></label><br>
                         <input formControlName="tb" class="form-control" type="number"  required>
                     </div>
                     <div class="form-group">
-                        <label><b>Nama Lengkap</b></label><br>
+                        <label><b>Full Name</b></label><br>
                         <input formControlName="nama" class="form-control" type="text"  required>
                     </div>
                     <div class="form-group">
-                        <label><b>Berat Badan(Opsional)</b></label><br>
+                        <label><b>Weight(Optional)</b></label><br>
                         <input formControlName="bb" class="form-control" type="number"  required>
                     </div>
                     <div class="form-group">
-                        <label><b>Tempat Tanggal Lahir</b></label><br>
+                        <label><b>Place and Date of Birth</b></label><br>
                         <input formControlName="ttl" class="form-control" type="text" required>
                     </div>
                     <div class="form-group">
-                        <label><b>Nama Team</b></label><br>
+                        <label><b>Team Name</b></label><br>
                         <select formControlName="namateam" class="form-control" required>
                             <option value="team1">team1</option>
                             <option value="team2">team2</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label><b>Nomor Induk Kependudukan</b></label><br>
+                        <label><b>ID Number</b></label><br>
                         <input formControlName="nik" class="form-control" type="text"  required>
                     </div>
                     <div class="form-group">
-                        <label><b>Nomor Punggung</b></label><br>
+                        <label><b>Back Number</b></label><br>
                         <input formControlName="nomorpunggung" class="form-control" type="number"  required>
                     </div>
                     <div class="form-group">
-                        <label><b>Alamat</b></label><br>
+                        <label><b>Address</b></label><br>
                         <textarea formControlName="alamat" class="form-control" type="text" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label><b>Posisi</b></label><br>
+                        <label><b>Position</b></label><br>
                         <input formControlName="posisi" class="form-control" type="text"  required>
                             <!--  pattern="[08][0-9]{9,}" -->
                     </div>
