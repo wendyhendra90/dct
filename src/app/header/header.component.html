@@ -22,7 +22,8 @@
                 <a mat-button href="/wonderfulindonesia">WONDERFUL INDONESIA</a>
                 <a mat-button href="/news">NEWS</a>
                 <a mat-button href="https://web.buattoko.id/dctsport/">SHOPS</a>
-                <a mat-button href="/login">LOGIN</a>
+                <a mat-button href="/login" *ngIf="!authenticated">LOGIN</a>
+                <a mat-button href="" *ngIf="authenticated" (click)="logout()">LOGOUT</a>
             </mat-button-toggle-group>
         </mat-toolbar>
     </div>

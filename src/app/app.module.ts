@@ -38,6 +38,7 @@ import { DoneregisComponent } from './content/register/doneregis/doneregis.compo
 import { DatateamComponent } from './content/register/data/datateam/datateam.component';
 import { DataplayerComponent } from './content/register/data/dataplayer/dataplayer.component';
 import { DatanonplayerComponent } from './content/register/data/datanonplayer/datanonplayer.component';
+import { RegisterComponent } from './content/login/register/register.component';
 
 
 const material=[
@@ -82,7 +83,8 @@ const material=[
     DoneregisComponent,
     DatateamComponent,
     DataplayerComponent,
-    DatanonplayerComponent
+    DatanonplayerComponent,
+    RegisterComponent
   ],
   imports: [
     material,

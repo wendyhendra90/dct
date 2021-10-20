@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Emitters } from 'src/app/emitter/emitter';
 
 @Component({
   selector: 'app-registeam',
@@ -13,6 +14,7 @@ export class RegisteamComponent implements OnInit {
     teamclassification: new FormControl(''),
     teamname: new FormControl(''),
     teamcategory: new FormControl(''),
+    photo:new FormControl('')
   });
   constructor(
     private route:ActivatedRoute,
@@ -21,12 +23,14 @@ export class RegisteamComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
   }
   onSubmit(){
     const data={
       teamclassification:this.formregis.get('teamclassification')?.value,
       teamname:this.formregis.get('teamname')?.value,
       teamcategorys:this.formregis.get('teamcategory')?.value,
+      photo:this.formregis.get('photo')?.setValue(File)
     }
     console.warn(data)
     if(confirm("Apakah data sudah benar?")){

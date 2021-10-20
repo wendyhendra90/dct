@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DctacademyComponent } from './content/dctacademy/dctacademy.component';
 import { HomeComponent } from './content/home/home.component';
 import { LoginComponent } from './content/login/login.component';
+import { RegisterComponent } from './content/login/register/register.component';
 import { NewsComponent } from './content/news/news.component';
 import { DatanonplayerComponent } from './content/register/data/datanonplayer/datanonplayer.component';
 import { DataplayerComponent } from './content/register/data/dataplayer/dataplayer.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path:'dataplayer',component:DataplayerComponent},
   {path:'datanonplayer',component:DatanonplayerComponent},
   {path:'login',component:LoginComponent},
+  {path:'register_akun',component:RegisterComponent},
 ];
 
 @NgModule({

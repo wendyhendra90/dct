@@ -1,0 +1,78 @@
+'Authorization: Bearer '
+//POST
+// login
+{
+    "username":"xteam",
+    "password":"aabbccdd"
+}
+//register
+{
+    "username":"xteam",
+    "password":"aabbccdd",
+    "role":"admin|user"
+}
+
+
+//POST
+// registeam
+{
+        "Team Classification":"Indonesian Team",
+        "Team Name":"x team",
+        "TeamBirthCategory":"U10(birth 2011-2012)",
+        "TeamPhotos":"file.jpg"
+}
+// regisplayer
+{
+    "DCT Registered Number":"00001/2008/ID",
+    "Phone Number":"08xxxxxxxxxx",
+    "Sports":"Soccer",
+    "Student Registered Number":"0012319221",
+    "Nationality":"Indonesian",
+    "Height(Optional)":"177",
+    "Full Name":"Aman Jaya",
+    "Weight(Optional)":"67",
+    "Place and Date of Birth":"Medan, 29 maret 2002",
+    "Team Name":"x team",
+    "ID Number":"118020000122229",
+    "Back Number":"18",
+    "Address":"jaya no.12",
+    "Position":"Striker"
+}
+// regisnonplayer
+{
+    "DCT Registered Number":"00001/2008/ID",
+    "Nationality":"Indonesian",
+    "Full Name":"Aman Jaya",
+    "ID Number":"118020000122229",
+    "Phone Number":"08xxxxxxxxxx",
+    "Address":"jaya no.12",
+    "Position":"Parents"
+}
+
+//GET
+//datateam from registeam
+{
+    "No":"1",
+    "Team Classification":"Indonesian Team",
+    "Team Name":"x team",
+}
+//dataplayer from regisplayer
+{
+    "No":"1",
+    "Full Name":"Aman Jaya",
+    "Nationality":"Indonesian",
+    "Sports":"Soccer",
+    "Team Name":"x team",
+    "Position":"Striker",
+    "Student Registered Number":"0012319221",
+    "DCT Registered Number":"00001/2008/ID"
+}
+//datanonplayer from regisnonplayerr
+{
+    "No":"1",
+    "Full Name":"Aman Jaya",
+    "Nationality":"Indonesian",
+    "Position":"Parents",
+    "DCT Registered Number":"00001/2008/ID"
+}
+

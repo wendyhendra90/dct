@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Emitters } from 'src/app/emitter/emitter';
 
 @Component({
   selector: 'app-news',
@@ -10,6 +11,7 @@ export class NewsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

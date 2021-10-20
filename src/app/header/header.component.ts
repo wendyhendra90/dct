@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Emitters } from '../emitter/emitter';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
-
+  authenticated=false;
   ngOnInit(): void {
+    Emitters.authEmitter.subscribe(
+      (auth:boolean)=>{
+      this.authenticated=auth}
+    );
   }
-
+  logout(){
+    this.authenticated=false;
+  }
 }

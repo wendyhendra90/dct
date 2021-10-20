@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" *ngIf="authenticated">
     <h2 class="text-center">Data Non-Player</h2>
     <mat-divider style="color: #2196f3; background-color: #2196f3;height: 2px;width: 20%;margin: auto;" class="mb-3">
     </mat-divider>
@@ -44,4 +44,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+</div>
+<div *ngIf="!authenticated">
+    login dulu
 </div>

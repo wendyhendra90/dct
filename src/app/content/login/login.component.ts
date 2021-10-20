@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Emitters } from 'src/app/emitter/emitter';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +19,15 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
   }
   onSubmit(){
     const data={
       username:this.formregis.get('username')?.value,
       password:this.formregis.get('password')?.value
     }
-    console.warn(data)
-
+    console.warn(data);
+    Emitters.authEmitter.emit(true);
+    console.log(Emitters.authEmitter);
   }
 }
