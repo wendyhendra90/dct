@@ -10,13 +10,17 @@ export class HeaderComponent implements OnInit {
 
   constructor() { }
   authenticated=false;
+  
   ngOnInit(): void {
-    Emitters.authEmitter.subscribe(
-      (auth:boolean)=>{
-      this.authenticated=auth}
-    );
+    
+    if(localStorage.getItem('tes')){
+      this.authenticated=true;
+    }else{
+      this.authenticated=false;
+    }
   }
   logout(){
+    localStorage.removeItem('tes')
     this.authenticated=false;
   }
 }

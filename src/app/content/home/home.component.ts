@@ -9,9 +9,9 @@ import { Emitters } from 'src/app/emitter/emitter';
 export class HomeComponent implements OnInit {
 
   constructor() { }
-
-  ngOnInit(): void {
   
+  ngOnInit(): void {
+
   }
 
 }

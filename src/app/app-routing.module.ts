@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { DctacademyComponent } from './content/dctacademy/dctacademy.component';
 import { HomeComponent } from './content/home/home.component';
 import { LoginComponent } from './content/login/login.component';
@@ -24,15 +25,22 @@ const routes: Routes = [
   {path:'dctacademy',component:DctacademyComponent},
   {path:'wonderfulindonesia',component:WonderfulindonesiaComponent},
   {path:'news',component:NewsComponent},
-  {path:'registeam',component:RegisteamComponent},
-  {path:'regisplayer',component:RegisplayerComponent},
-  {path:'regisnonplayer',component:RegisnonplayerComponent},
+  {path:'registeam',component:RegisteamComponent,
+  canActivate:[AuthGuard]},
+  {path:'regisplayer',component:RegisplayerComponent,
+  canActivate:[AuthGuard]},
+  {path:'regisnonplayer',component:RegisnonplayerComponent,
+  canActivate:[AuthGuard]},
   {path:'doneregis',component:DoneregisComponent},
-  {path:'datateam',component:DatateamComponent},
-  {path:'dataplayer',component:DataplayerComponent},
-  {path:'datanonplayer',component:DatanonplayerComponent},
+  {path:'datateam',component:DatateamComponent,
+  canActivate:[AuthGuard]},
+  {path:'dataplayer',component:DataplayerComponent,
+  canActivate:[AuthGuard]},
+  {path:'datanonplayer',component:DatanonplayerComponent,
+      canActivate:[AuthGuard],},
   {path:'login',component:LoginComponent},
-  {path:'register_akun',component:RegisterComponent},
+  {path:'register_akun',component:RegisterComponent,
+  canActivate:[AuthGuard]},
 ];
 
 @NgModule({
