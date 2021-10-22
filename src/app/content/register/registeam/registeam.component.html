@@ -34,7 +34,7 @@
 
                   <div class="form-group">
                     <label for="file"><b>Choose File</b></label>
-                    <input type="file" id="file" formControlName="photo" class="form-control">
+                    <input type="file" (change)="onfileselected($event)" id="file" formControlName="photo" class="form-control">
                 </div>
 
                   <div class="mt-3 mb-2">

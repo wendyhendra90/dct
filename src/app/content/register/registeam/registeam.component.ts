@@ -25,12 +25,18 @@ export class RegisteamComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  photo: File | undefined;
+
+  onfileselected(event:any){
+    console.log(event);
+    this.photo=<File>event.target.files[0];
+  }
   onSubmit(){
     const data={
       teamclassification:this.formregis.get('teamclassification')?.value,
       teamname:this.formregis.get('teamname')?.value,
       teamcategorys:this.formregis.get('teamcategory')?.value,
-      photo:this.formregis.get('photo')?.setValue(File)
+      photo:this.photo
     }
     console.warn(data)
     if(confirm("Apakah data sudah benar?")){

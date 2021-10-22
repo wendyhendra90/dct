@@ -29,8 +29,18 @@ export class LoginComponent implements OnInit {
       password:this.formregis.get('password')?.value
     }
     console.warn(data);
-    localStorage.setItem('tes','abc')
-    this.router.navigate(['']);
-
+    if(this.formregis.get('username')?.value=='admin'){
+      localStorage.setItem('tes','abc');localStorage.setItem('role','admin')
+    }else{
+      localStorage.setItem('tes','abc');localStorage.setItem('role','user')
+    }
+    
+    setTimeout(() =>
+    {
+      this.router.navigate(['']).then(()=>{
+        window.location.reload();
+      });
+    },
+    500);
   }
 }

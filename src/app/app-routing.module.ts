@@ -17,6 +17,7 @@ import { TournamentComponent } from './content/tournament/tournament.component';
 import { WonderfulindonesiaComponent } from './content/wonderfulindonesia/wonderfulindonesia.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { RoleGuard } from './role.guard';
 
 
 const routes: Routes = [
@@ -40,7 +41,7 @@ const routes: Routes = [
       canActivate:[AuthGuard],},
   {path:'login',component:LoginComponent},
   {path:'register_akun',component:RegisterComponent,
-  canActivate:[AuthGuard]},
+  canActivate:[AuthGuard,RoleGuard]},
 ];
 
 @NgModule({
