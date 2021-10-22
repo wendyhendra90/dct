@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   logout(){
-    localStorage.removeItem('tes')
+    localStorage.removeItem('tes');localStorage.removeItem('role');
     this.authenticated=false;
   }
 }
