@@ -31,8 +31,13 @@ export class DataplayerComponent implements OnInit {
   'namateam','posisi','nisn','noanggotadct'];
   dataSource = new MatTableDataSource(ELEMENT_DATA2);
   constructor() { }
-
+  authenticated=false;
   ngOnInit(): void {
+    if(localStorage.getItem('role')=='admin'){
+      this.authenticated=true;
+    }else{
+      this.authenticated=false;
+    }
   }
 
   applyFilter(filtervalue:string){

@@ -16,6 +16,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 import { AuthInterceptor } from './auth.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -64,6 +65,7 @@ const material=[
   ReactiveFormsModule,
   MatTableModule,
   MatSortModule,
+  MatTableExporterModule,
 ];
 
 @NgModule({

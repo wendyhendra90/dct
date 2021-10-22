@@ -1,4 +1,4 @@
-<div class="content" *ngIf="authenticated">
+<div class="content">
     <h2 class="text-center">Data Non-Player</h2>
     <mat-divider style="color: #2196f3; background-color: #2196f3;height: 2px;width: 20%;margin: auto;" class="mb-3">
     </mat-divider>
@@ -6,8 +6,11 @@
     <mat-form-field>
         <input matInput #filter (keyup)="applyFilter(filter.value)" placeholder="Filter">
     </mat-form-field>
-
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div *ngIf="authenticated">
+        <button mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'nonplayer'})">xlsx</button>
+        <button mat-raised-button (click)="exporter.exportTable('csv',{fileName:'nonplayer'})">csv</button>
+    </div>
+    <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z8" #exporter="matTableExporter">
 
         <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -44,7 +47,4 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-</div>
-<div *ngIf="!authenticated">
-    login dulu
 </div>

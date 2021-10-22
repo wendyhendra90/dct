@@ -6,8 +6,11 @@
     <mat-form-field>
         <input matInput #filter (keyup)="applyFilter(filter.value)" placeholder="Filter">
     </mat-form-field>
-
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div *ngIf="authenticated">
+        <button mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'nonplayer'})">xlsx</button>
+        <button mat-raised-button (click)="exporter.exportTable('csv',{fileName:'nonplayer'})">csv</button>
+    </div>
+    <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z8" #exporter="matTableExporter">
 
         <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->

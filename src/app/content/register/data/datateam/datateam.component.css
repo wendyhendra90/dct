@@ -1,4 +1,7 @@
+.content {
+  width: 80%;
+  margin: auto;margin-bottom: 29px;
+}
 table {
-    width: 70%;
-    margin: auto;margin-bottom: 29px;
+    width: 100%;
   }

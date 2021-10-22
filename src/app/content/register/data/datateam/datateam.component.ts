@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -24,10 +25,17 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class DatateamComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
   constructor() { }
-
+  authenticated=false;
   ngOnInit(): void {
+    if(localStorage.getItem('role')=='admin'){
+      this.authenticated=true;
+    }else{
+      this.authenticated=false;
+    }
   }
-
+  applyFilter(filtervalue:string){
+    this.dataSource.filter=filtervalue.trim().toLowerCase();
+  }
 }
