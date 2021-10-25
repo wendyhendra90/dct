@@ -29,20 +29,29 @@ export class RegisnonplayerComponent implements OnInit {
   
   onSubmit(){
     const data={
-      noanggota:this.formregis.get('noanggota')?.value,
-      kebangsaan:this.formregis.get('kebangsaan')?.value,
-      nama:this.formregis.get('nama')?.value,
-      nik:this.formregis.get('nik')?.value,
-      nohp:this.formregis.get('nohp')?.value,
-      alamat:this.formregis.get('alamat')?.value,
-      posisi:this.formregis.get('posisi')?.value,
+      dct_registered_number:this.formregis.get('noanggota')?.value,
+      nationality:this.formregis.get('kebangsaan')?.value,
+      full_name:this.formregis.get('nama')?.value,
+      id_number:this.formregis.get('nik')?.value,
+      phone_number:this.formregis.get('nohp')?.value,
+      address:this.formregis.get('alamat')?.value,
+      position:this.formregis.get('posisi')?.value,
     }
     console.warn(data)
-    if(confirm("Apakah data sudah benar?")){
-      alert("Data berhasil")
-      this.router.navigate(['/doneregis']);
+    if(confirm("Is the data correct?"+" (this data cannot be changed after inputted)")){
+      this.http.post('https://hercules.aturtoko.id/dct/public/regisnonplayer', data).subscribe((res:any)=>
+          { console.log(res);
+            if(res.success){
+              alert("Success input data");
+              this.router.navigate(['/doneregis']);
+            }else{
+              alert("Error: "+res.message+"\nContact Admin");
+            }
+          },(err:any)=>{
+            console.error(err);
+          })
     }else{
-      alert("Silahkan perbaiki datanya")
+      alert("Make sure your data is correct")
     }
   }
 

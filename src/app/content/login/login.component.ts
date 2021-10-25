@@ -24,23 +24,50 @@ export class LoginComponent implements OnInit {
 
   }
   onSubmit(){
-    const data={
-      username:this.formregis.get('username')?.value,
-      password:this.formregis.get('password')?.value
-    }
-    console.warn(data);
-    if(this.formregis.get('username')?.value=='admin'){
-      localStorage.setItem('tes','abc');localStorage.setItem('role','admin')
-    }else{
-      localStorage.setItem('tes','abc');localStorage.setItem('role','user')
-    }
+    // const data={
+    //   username:this.formregis.get('username')?.value,
+    //   password:this.formregis.get('password')?.value
+    // }
+    // localStorage.setItem('token','tes')
+    // if(this.formregis.get('username')?.value=='admindct'){
+    //               localStorage.setItem('role','admin')
+    //             }else{
+    //               localStorage.setItem('role','user')
+    //             }
     
-    setTimeout(() =>
-    {
-      this.router.navigate(['']).then(()=>{
-        window.location.reload();
-      });
-    },
-    500);
+    if(this.formregis.get('username')?.value!='' && this.formregis.get('password')?.value!=''){
+      const data={
+        username:this.formregis.get('username')?.value,
+        password:this.formregis.get('password')?.value
+      }
+      console.warn(data);
+      this.http.post('https://hercules.aturtoko.id/dct/public/login', data).subscribe((res:any)=>
+          { console.log(res);
+            if(res.token!=''||res.token!=null){
+              localStorage.setItem('token', res.token);
+              if(this.formregis.get('username')?.value=='admindct'){
+                localStorage.setItem('role','admin')
+              }else{
+                localStorage.setItem('role','user')
+              }
+              
+              setTimeout(() =>
+              {
+                this.router.navigate(['']).then(()=>{
+                  window.location.reload();
+                });
+              },
+              500);
+            }else{
+              alert("Error: "+res.message+"\nHubungi Admin");
+            }
+            
+          },(err:any)=>{
+            alert('Wrong username or password')
+            console.error(err);
+          })
+    }else{
+      alert('Username or Password is empty');
+    }
   }
 }

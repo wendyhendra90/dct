@@ -11,8 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   formregis=new FormGroup({
     username: new FormControl(''),
-    password: new FormControl(''),
-    role: new FormControl('')
+    password: new FormControl('')
   });
   constructor(
     private route:ActivatedRoute,
@@ -27,12 +26,23 @@ export class RegisterComponent implements OnInit {
     const data={
       username:this.formregis.get('username')?.value,
       password:this.formregis.get('password')?.value,
-      role:this.formregis.get('role')?.value
+      role:'user'
     }
     console.warn(data)
     if(confirm("Apakah data sudah benar?")){
-      alert("Data berhasil");
-      this.router.navigate(['/doneregis']);
+      this.http.post('https://hercules.aturtoko.id/dct/public/register', data).subscribe((res:any)=>
+          { console.log(res);
+            if(res.success){
+              alert("Data berhasil diregis");
+              this.router.navigate(['/doneregis']);
+            }else{
+              alert("Error: "+res.message+"\nHubungi Admin");
+            }
+          },(err:any)=>{
+            console.error(err);
+          })
+
+      
     }else{
       alert("Silahkan perbaiki datanya")
     }

@@ -13,14 +13,14 @@ export class HeaderComponent implements OnInit {
   
   ngOnInit(): void {
     
-    if(localStorage.getItem('tes')){
+    if(localStorage.getItem('token')){
       this.authenticated=true;
     }else{
       this.authenticated=false;
     }
   }
   logout(){
-    localStorage.removeItem('tes');localStorage.removeItem('role');
+    localStorage.removeItem('token');localStorage.removeItem('role');
     this.authenticated=false;
   }
 }

@@ -1,24 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-interface nonplayer{
-  no:number;namalengkap:string;kebangsaan:string;posisi:string;noanggotadct:string
+interface datanonplayer{
+  id:number;full_name:string;nationality:string;position:string;dct_registered_number:string
 }
-const ELEMENT_DATA2: nonplayer[] = [
-  {no: 1, namalengkap: 'Hydrogen', kebangsaan: 'Indonesia',posisi:'Parents',noanggotadct:''},
-  {no: 2, namalengkap: 'Helium', kebangsaan: 'Indonesia', posisi:'Coord. Regional',noanggotadct:''},
-  {no: 3, namalengkap: 'Lithium', kebangsaan: 'International', posisi:'Coach',noanggotadct:''},
-  {no: 4, namalengkap: 'Beryllium', kebangsaan: 'Indonesia',posisi:'Coach',noanggotadct:''},
-];
+
 @Component({
   selector: 'app-datanonplayer',
   templateUrl: './datanonplayer.component.html',
   styleUrls: ['./datanonplayer.component.css']
 })
 export class DatanonplayerComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'namalengkap', 'kebangsaan'
-  ,'posisi','noanggotadct'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA2);
-  constructor() { }
+  displayedColumns: string[] = ['id', 'full_name', 'nationality'
+  ,'position','dct_registered_number'];
+  dataSource = new MatTableDataSource<datanonplayer>();
+  constructor(
+    private http:HttpClient
+  ) { }
 
   authenticated=false;
   ngOnInit(): void {
@@ -27,6 +25,13 @@ export class DatanonplayerComponent implements OnInit {
     }else{
       this.authenticated=false;
     }
+    this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer').subscribe((res:any)=>
+          { 
+            this.dataSource=new MatTableDataSource <datanonplayer> (res.data.data);}
+            ,(err:any)=>{
+              console.error(err);
+              alert(err)
+            })
   }
   
   applyFilter(filtervalue:string){

@@ -17,8 +17,8 @@
                     <div class="form-group">
                         <label><b>Sports</b></label><br>
                         <select formControlName="cabangolahraga" class="form-control" required>
-                            <option value="Pelatih">Soccer</option>
-                            <option value="Official">Etc...</option>
+                            <option value="Soccer">Soccer</option>
+                            <option value="ETC">Etc...</option>
                         </select>
                             <!--  pattern="[08][0-9]{9,}" -->
                     </div>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label><b>Height(Optional)</b></label><br>
-                        <input formControlName="tb" class="form-control" type="number"  required>
+                        <input formControlName="tb" class="form-control" type="number"  >
                     </div>
                     <div class="form-group">
                         <label><b>Full Name</b></label><br>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label><b>Weight(Optional)</b></label><br>
-                        <input formControlName="bb" class="form-control" type="number"  required>
+                        <input formControlName="bb" class="form-control" type="number"  >
                     </div>
                     <div class="form-group">
                         <label><b>Place and Date of Birth</b></label><br>
@@ -49,8 +49,9 @@
                     <div class="form-group">
                         <label><b>Team Name</b></label><br>
                         <select formControlName="namateam" class="form-control" required>
-                            <option value="team1">team1</option>
-                            <option value="team2">team2</option>
+                            <ng-container *ngFor="let item of datateam">
+                                <option value="{{item.id}}">{{item.team_name}}</option>
+                            </ng-container>
                         </select>
                     </div>
                     <div class="form-group">

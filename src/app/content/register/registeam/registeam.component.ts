@@ -14,7 +14,6 @@ export class RegisteamComponent implements OnInit {
     teamclassification: new FormControl(''),
     teamname: new FormControl(''),
     teamcategory: new FormControl(''),
-    photo:new FormControl('')
   });
   constructor(
     private route:ActivatedRoute,
@@ -25,25 +24,33 @@ export class RegisteamComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  photo: File | undefined;
+  // photo: File | undefined;
 
-  onfileselected(event:any){
-    console.log(event);
-    this.photo=<File>event.target.files[0];
-  }
+  // onfileselected(event:any){
+  //   console.log(event);
+  //   this.photo=<File>event.target.files[0];
+  // }
   onSubmit(){
     const data={
-      teamclassification:this.formregis.get('teamclassification')?.value,
-      teamname:this.formregis.get('teamname')?.value,
-      teamcategorys:this.formregis.get('teamcategory')?.value,
-      photo:this.photo
+      team_classification:this.formregis.get('teamclassification')?.value,
+      team_name:this.formregis.get('teamname')?.value,
+      team_birth_category:this.formregis.get('teamcategory')?.value
     }
     console.warn(data)
-    if(confirm("Apakah data sudah benar?")){
-      alert("Data berhasil");
-      this.router.navigate(['/doneregis']);
+    if(confirm("Is the data correct?"+" (this data cannot be changed after inputted)")){
+      this.http.post('https://hercules.aturtoko.id/dct/public/registeam', data).subscribe((res:any)=>
+          { console.log(res);
+            if(res.success){
+              alert("Success input data");
+              this.router.navigate(['/doneregis']);
+            }else{
+              alert("Error: "+res.message+"\nContact Admin");
+            }
+          },(err:any)=>{
+            console.error(err);
+          })
     }else{
-      alert("Silahkan perbaiki datanya")
+      alert("Make sure your data is correct")
     }
     // this.http.post('https://emaillead.aturtoko.id/api/v1/subscriber', data).subscribe((res:any)=>
     //     { console.log(res);
