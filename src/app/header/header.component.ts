@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Emitters } from '../emitter/emitter';
 
 @Component({
   selector: 'app-header',

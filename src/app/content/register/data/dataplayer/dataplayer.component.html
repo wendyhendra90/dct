@@ -7,8 +7,7 @@
         <input matInput #filter (keyup)="applyFilter(filter.value)" placeholder="Filter">
     </mat-form-field>
     <div *ngIf="authenticated">
-        <button mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'player'})">xlsx</button>
-        <button mat-raised-button (click)="exporter.exportTable('csv',{fileName:'player'})">csv</button>
+        <button mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'player'})">Download</button>
     </div>
     <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z8" #exporter="matTableExporter">
 
