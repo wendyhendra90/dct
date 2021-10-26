@@ -30,7 +30,7 @@ export class DatateamComponent implements OnInit {
       this.authenticated=false;
     }
     
-    this.http.get('https://hercules.aturtoko.id/dct/public/datateam').subscribe((res:any)=>
+    this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist').subscribe((res:any)=>
           {
           // console.log(res);
            this.dataSource=new MatTableDataSource <datateam> (res.data.data);
