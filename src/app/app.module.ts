@@ -41,6 +41,7 @@ import { DatateamComponent } from './content/register/data/datateam/datateam.com
 import { DataplayerComponent } from './content/register/data/dataplayer/dataplayer.component';
 import { DatanonplayerComponent } from './content/register/data/datanonplayer/datanonplayer.component';
 import { RegisterComponent } from './content/login/register/register.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -68,7 +69,8 @@ const material=[
   MatTableModule,
   MatSortModule,
   MatTableExporterModule,
-  MatOptionModule
+  MatOptionModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

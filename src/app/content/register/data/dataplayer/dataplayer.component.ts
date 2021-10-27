@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 interface dataplayer{
@@ -17,6 +18,7 @@ export class DataplayerComponent implements OnInit {
   displayedColumns: string[] = ['id', 'full_name', 'nationality', 'sports',
   'team_name','position','student_registered_number','dct_registered_number'];
   dataSource = new MatTableDataSource<dataplayer>();
+  response:any;
   datateam:any=[];
   constructor(
     private http:HttpClient
@@ -32,6 +34,7 @@ export class DataplayerComponent implements OnInit {
     //dataplayer
     this.http.get('https://hercules.aturtoko.id/dct/public/dataplayer').subscribe((res:any)=>
           { 
+            this.response=res.data;
             this.dataSource=new MatTableDataSource <dataplayer> (res.data.data);
           },(err:any)=>{
             console.error(err);
@@ -40,6 +43,36 @@ export class DataplayerComponent implements OnInit {
   }
 
   applyFilter(filtervalue:string){
-    this.dataSource.filter=filtervalue.trim().toLowerCase();
+    let params=new HttpParams();
+    params=params.append('search',String(filtervalue));
+    params=params.append('filter',String('team_name'));
+    params=params.append('order',String('team_name'));
+    this.http.get('https://hercules.aturtoko.id/dct/public/dataplayer',{params}).subscribe((res:any)=>
+    {
+      this.response=res.data;
+           this.dataSource=new MatTableDataSource <dataplayer> (res.data.data);
+          console.log(this.dataSource);
+          },(err:any)=>{
+            console.error(err);
+            alert(err)
+    })
+  }
+  pageEvent:PageEvent;
+  onPaginateChange(event:PageEvent){
+    let params = new HttpParams();
+    let page=event.pageIndex;
+    let size=event.pageSize;
+    page=page+1;
+    params = params.append('page', String(page));
+    params = params.append('limit', String(size));
+    this.http.get('https://hercules.aturtoko.id/dct/public/dataplayer',{params}).subscribe((res:any)=>
+    {
+      this.response=res.data;
+           this.dataSource=new MatTableDataSource <dataplayer> (res.data.data);
+          console.log(this.dataSource);
+          },(err:any)=>{
+            console.error(err);
+            alert(err)
+    })
   }
 }

@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 interface datanonplayer{
   id:number;full_name:string;nationality:string;position:string;dct_registered_number:string
@@ -14,6 +15,7 @@ export class DatanonplayerComponent implements OnInit {
   displayedColumns: string[] = ['id', 'full_name', 'nationality'
   ,'position','dct_registered_number'];
   dataSource = new MatTableDataSource<datanonplayer>();
+  response:any;
   constructor(
     private http:HttpClient
   ) { }
@@ -27,6 +29,7 @@ export class DatanonplayerComponent implements OnInit {
     }
     this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer').subscribe((res:any)=>
           { 
+            this.response=res.data;
             this.dataSource=new MatTableDataSource <datanonplayer> (res.data.data);}
             ,(err:any)=>{
               console.error(err);
@@ -35,6 +38,36 @@ export class DatanonplayerComponent implements OnInit {
   }
   
   applyFilter(filtervalue:string){
-    this.dataSource.filter=filtervalue.trim().toLowerCase();
+    let params=new HttpParams();
+    params=params.append('search',String(filtervalue));
+    params=params.append('filter',String('dct_registered_number'));
+    params=params.append('order',String('dct_registered_number'));
+    this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer',{params}).subscribe((res:any)=>
+    {
+      this.response=res.data;
+           this.dataSource=new MatTableDataSource <datanonplayer> (res.data.data);
+          console.log(this.dataSource);
+          },(err:any)=>{
+            console.error(err);
+            alert(err)
+    })
+  }
+  pageEvent:PageEvent;
+  onPaginateChange(event:PageEvent){
+    let params = new HttpParams();
+    let page=event.pageIndex;
+    let size=event.pageSize;
+    page=page+1;
+    params = params.append('page', String(page));
+    params = params.append('limit', String(size));
+    this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer',{params}).subscribe((res:any)=>
+    {
+      this.response=res.data;
+           this.dataSource=new MatTableDataSource <datanonplayer> (res.data.data);
+          console.log(this.dataSource);
+          },(err:any)=>{
+            console.error(err);
+            alert(err)
+    })
   }
 }
