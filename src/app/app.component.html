@@ -1,3 +1,183 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- <style>
+        .floating-wpp {
+          position: fixed;
+          bottom: 15px;
+          left: 15px;
+          font-size: 14px;
+          transition: bottom .2s
+        }
+    
+        .floating-wpp .floating-wpp-button {
+          position: relative;
+          border-radius: 50%;
+          box-shadow: 1px 1px 4px rgba(60, 60, 60, .4);
+          transition: box-shadow .2s;
+          cursor: pointer;
+          overflow: hidden
+        }
+    
+        .floating-wpp .floating-wpp-button img,
+        .floating-wpp .floating-wpp-button svg {
+          position: absolute;
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          top: 50%;
+          left: 50%;
+          transform: translate3d(-50%, -50%, 0)
+        }
+    
+        .floating-wpp:hover {
+          bottom: 17px
+        }
+    
+        .floating-wpp:hover .floating-wpp-button {
+          box-shadow: 1px 2px 8px rgba(60, 60, 60, .4)
+        }
+    
+        .floating-wpp .floating-wpp-popup {
+          border-radius: 6px;
+          background-color: #E5DDD5;
+          position: absolute;
+          overflow: hidden;
+          padding: 0;
+          box-shadow: 1px 2px 8px rgba(60, 60, 60, .25);
+          width: 0;
+          height: 0;
+          bottom: 0;
+          opacity: 0;
+          transition: bottom .1s ease-out, opacity .2s ease-out;
+          transform-origin: bottom
+        }
+    
+        .floating-wpp .floating-wpp-popup.active {
+          padding: 0 12px 12px;
+          width: 260px;
+          height: auto;
+          bottom: 82px;
+          opacity: 1
+        }
+    
+        .floating-wpp .floating-wpp-popup .floating-wpp-message {
+          background-color: #fff;
+          padding: 8px;
+          border-radius: 0 5px 5px;
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, .15);
+          opacity: 0;
+          transition: opacity .2s
+        }
+    
+        .floating-wpp .floating-wpp-popup.active .floating-wpp-message {
+          opacity: 1;
+          transition-delay: .2s
+        }
+    
+        .floating-wpp .floating-wpp-popup .floating-wpp-head {
+          text-align: right;
+          color: #fff;
+          margin: 0 -15px 10px;
+          padding: 6px 12px;
+          display: flex;
+          justify-content: space-between;
+          cursor: pointer
+        }
+    
+        .floating-wpp .floating-wpp-input-message {
+          background-color: #fff;
+          margin: 10px -15px -15px;
+          padding: 0 15px;
+          display: flex;
+          align-items: center
+        }
+    
+        .floating-wpp .floating-wpp-input-message textarea {
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-shadow: none;
+          padding: 8px;
+          margin: 10px 0;
+          width: 100%;
+          max-width: 100%;
+          font-family: inherit;
+          font-size: inherit;
+          resize: none
+        }
+    
+        .floating-wpp .floating-wpp-btn-send {
+          margin-left: 12px;
+          font-size: 0;
+          cursor: pointer
+        }
+    
+        #WAButton {
+          position: fixed;
+          bottom: 10px;
+          right: 10px;
+        }
+    
+        #WAButton {
+          border: none;
+          background: none;
+          width: 70px;
+          height: 70px;
+          background-size: cover;
+        }
+    </style> -->
+</head>
+<body>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <!-- <div>
+
+      <a href="https://web.whatsapp.com/send?phone=+6281515111555" class="whatsapp_float" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
+    </div> -->
+    <div id="myButton"></div>
+    <!-- <div id="WAButton" #wabutton="" class="floating-wpp" style="left: auto; right: 15px;">
+        <div class="floating-wpp-button" style="width: 70px; height: 70px; background-color: rgb(37, 211, 102);">
+            <img src="./assets/whatsapp.png" alt="Whatsapp Icon">
+            <div class="floating-wpp-button-image">
+            </div>
+        </div>
+        <div class="floating-wpp-popup" style="right: 0px;">
+            <div class="floating-wpp-head" style="background-color: rgb(18, 140, 126);">
+                <span>Ngobrol Melalui WhatsApp!</span><strong class="close">×</strong>
+            </div>
+            <div class="floating-wpp-message">Hello, Ada yang bisa kami bantu?</div>
+            <div class="floating-wpp-input-message"><textarea aria-label="message"></textarea>
+                <div class="floating-wpp-btn-send">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 20 18" width="20" height="18">
+                        <defs>
+                            <clipPath id="_clipPath_fgX00hLzP9PnAfCkGQoSPsYB7aEGkj1G">
+                                <rect width="20" height="18"></rect>
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#_clipPath_fgX00hLzP9PnAfCkGQoSPsYB7aEGkj1G)">
+                            <path d=" M 0 0 L 0 7.813 L 16 9 L 0 10.188 L 0 18 L 20 9 L 0 0 Z " fill="rgb(46,46,46)"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <app-footer></app-footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        setTimeout(() => {
+          $(function () {
+            $('#myButton').floatingWhatsApp({
+              phone: '628118880258',
+              headerTitle: 'Ngobrol Melalui WhatsApp!',
+              popupMessage: 'Hello, Ada yang bisa kami bantu?',
+              showPopup: true,
+              buttonImage: '<img src="../assets/logos/whatsapp.png" alt="Whatsapp Icon" />',
+              position: "right"
+            });
+          });
+        }, 3000);
+      </script>
+</body>
+
