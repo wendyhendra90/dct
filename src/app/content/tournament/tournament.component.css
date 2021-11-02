@@ -5,3 +5,8 @@
 mat-expansion-panel-header{
   border: 1px darkgray solid;
 }
+.mattabcontent{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
