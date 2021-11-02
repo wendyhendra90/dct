@@ -5,3 +5,13 @@
 table{
   width: 100%;
 }
+@media(min-width:720px){
+  .remindermobile{
+    display: none;
+  }
+}
+@media(max-width:812px){
+  .content {
+    width: 95%;
+  }
+}

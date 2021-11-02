@@ -9,6 +9,9 @@
   <div *ngIf="authenticated">
     <button mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'team'})">Download</button>
   </div>
+  <div class="remindermobile">
+    <p>Rotate your device for better looks</p>
+  </div>
   <div class="mat-elevation-z8">
     <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter">
 

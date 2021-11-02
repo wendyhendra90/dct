@@ -1,13 +1,47 @@
+<!-- desktop -->
 <div class="header">
     <div class="menus">
-        <mat-toolbar>
-            <span><img style="height: 100px;" src="../../assets/pngLogoDCT_DarkBackground.png" alt="logo dctsport"></span>
-            <div class="spacer"></div>
-            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-                <a mat-button [routerLink]="['']">HOME</a>
-                <a mat-button [routerLink]="['/tournament']">TOURNAMENT</a>
-                <a mat-button [routerLink]="['/dctacademy']">DCT ACADEMY</a>
-                <a mat-button [matMenuTriggerFor]="regis">REGISTER</a>
+            <mat-toolbar>
+                <span><img style="height: 100px;" src="../../assets/pngLogoDCT_DarkBackground.png" alt="logo dctsport"></span>
+                <div class="spacer"></div>
+                <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                    <a mat-button [routerLink]="['']">HOME</a>
+                    <a mat-button [routerLink]="['/tournament']">TOURNAMENT</a>
+                    <a mat-button [routerLink]="['/dctacademy']">DCT ACADEMY</a>
+                    <a mat-button [matMenuTriggerFor]="regis">REGISTER</a>
+                    <mat-menu #regis="matMenu">
+                        <a [routerLink]="['/registeam']" mat-menu-item>Register Team</a>
+                        <a [routerLink]="['/regisplayer']" mat-menu-item>Register Player</a>
+                        <a [routerLink]="['/regisnonplayer']" mat-menu-item>Register Non-Player</a>
+                        <a mat-menu-item [matMenuTriggerFor]="data">Data</a>
+                    </mat-menu>
+                    <mat-menu #data="matMenu">
+                        <a [routerLink]="['/datateam']" mat-menu-item>Data Team</a>
+                        <a [routerLink]="['/dataplayer']" mat-menu-item>Data Player</a>
+                        <a [routerLink]="['/datanonplayer']" mat-menu-item>Data Non-player</a>
+                    </mat-menu>
+                    <a mat-button [routerLink]="['/wonderfulindonesia']">WONDERFUL INDONESIA</a>
+                    <a mat-button [routerLink]="['/news']">NEWS</a>
+                    <a mat-button href="https://web.buattoko.id/dctsport/">SHOPS</a>
+                    <a mat-button [routerLink]="['/login']" *ngIf="!authenticated">LOGIN</a>
+                    <a mat-button href="" *ngIf="authenticated" (click)="logout()">LOGOUT</a>
+                </mat-button-toggle-group>
+            </mat-toolbar>
+    </div>
+    <div class="banner">
+        <img src="../../assets/Banner depan.jpg" style="width: 100%;">
+    </div>
+</div>
+
+
+<!-- mobile -->
+<mat-sidenav-container>
+    <mat-sidenav mode="over" [(opened)]="opened">
+            <mat-list name="fontStyle" aria-label="Font Style">
+                <a mat-button [routerLink]="['']">HOME</a><br>
+                <a mat-button [routerLink]="['/tournament']">TOURNAMENT</a><br>
+                <a mat-button [routerLink]="['/dctacademy']">DCT ACADEMY</a><br>
+                <a mat-button [matMenuTriggerFor]="regis">REGISTER</a><br>
                 <mat-menu #regis="matMenu">
                     <a [routerLink]="['/registeam']" mat-menu-item>Register Team</a>
                     <a [routerLink]="['/regisplayer']" mat-menu-item>Register Player</a>
@@ -19,15 +53,22 @@
                     <a [routerLink]="['/dataplayer']" mat-menu-item>Data Player</a>
                     <a [routerLink]="['/datanonplayer']" mat-menu-item>Data Non-player</a>
                 </mat-menu>
-                <a mat-button [routerLink]="['/wonderfulindonesia']">WONDERFUL INDONESIA</a>
-                <a mat-button [routerLink]="['/news']">NEWS</a>
-                <a mat-button href="https://web.buattoko.id/dctsport/">SHOPS</a>
-                <a mat-button [routerLink]="['/login']" *ngIf="!authenticated">LOGIN</a>
-                <a mat-button href="" *ngIf="authenticated" (click)="logout()">LOGOUT</a>
-            </mat-button-toggle-group>
+                <a mat-button [routerLink]="['/wonderfulindonesia']">WONDERFUL INDONESIA</a><br>
+                <a mat-button [routerLink]="['/news']">NEWS</a><br>
+                <a mat-button href="https://web.buattoko.id/dctsport/">SHOPS</a><br>
+                <a mat-button [routerLink]="['/login']" *ngIf="!authenticated">LOGIN</a><br>
+                <a mat-button href="" *ngIf="authenticated" (click)="logout()">LOGOUT</a><br>
+            </mat-list>
+        
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <span><img src="../../assets/pngLogoDCT_DarkBackground.png" alt="logo dctsport"></span>
+                    <div class="spacer"></div>
+            <mat-icon (click)="opened=!opened" style="color: white;">reorder</mat-icon>
         </mat-toolbar>
-    </div>
-    <div class="banner">
-        <img src="../../assets/Banner depan.jpg" style="width: 100%;">
-    </div>
-</div>
+        <div class="banner">
+            <img src="../../assets/Banner depan.jpg" style="width: 100%;height: 160px;">
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container> 

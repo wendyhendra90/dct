@@ -18,6 +18,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatOptionModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import { AuthInterceptor } from './auth.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -41,7 +44,7 @@ import { DatateamComponent } from './content/register/data/datateam/datateam.com
 import { DataplayerComponent } from './content/register/data/dataplayer/dataplayer.component';
 import { DatanonplayerComponent } from './content/register/data/datanonplayer/datanonplayer.component';
 import { RegisterComponent } from './content/login/register/register.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 
@@ -70,7 +73,9 @@ const material=[
   MatSortModule,
   MatTableExporterModule,
   MatOptionModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatSidenavModule,
+  MatListModule
 ];
 
 @NgModule({

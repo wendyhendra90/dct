@@ -1,5 +1,7 @@
-
-.menus mat-toolbar{
+.header{
+    width: 100vw;
+}
+mat-toolbar{
     background-color: black;
     height: fit-content;
 }
@@ -8,4 +10,30 @@
 }
 .spacer{
     flex:1 1 auto;
+}
+@media (max-width:1000px){
+    .header{
+        display: none;
+    }
+    mat-sidenav-content mat-toolbar span img{
+        width: 68px;height: 73px;
+    }
+}
+@media (min-width:1000px){
+    mat-sidenav-container{
+        display: none;
+    }
+
+}
+mat-sidenav-container{
+
+}
+mat-sidenav,mat-sidenav-content{
+
+}
+mat-sidenav{
+    background-color: white;
+    color: black;
+    width: 60%;
+    height: 100vh;
 }
