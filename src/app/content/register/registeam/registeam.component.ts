@@ -10,10 +10,44 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RegisteamComponent implements OnInit {
   formregis=new FormGroup({
-    teamclassification: new FormControl(''),
-    teamname: new FormControl(''),
-    teamcategory: new FormControl(''),
+    team_classification: new FormControl(''),
+    team_name: new FormControl(''),
+    team_birth_category: new FormControl(''),
+    files:new FormControl('')
   });
+  photo: string ;
+  images: any ;
+
+  onFileChange(event:any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formregis.get('files')?.setValue(file);
+    }
+  
+    //const reader = new FileReader();
+    // if(event.target.files && event.target.files.length) {
+    //   const [file] = event.target.files;
+    //   reader.readAsDataURL(file);
+    //   reader.onload = () => {
+    //     this.photo = reader.result as string;
+    //     this.formregis.patchValue({
+    //       files: reader.result
+    //     });
+    //   };
+    // }
+
+
+    // reader.onload = (event: any) => {
+    //   this.images.push(event.target.result);
+
+    //   this.formregis.patchValue({
+    //     files: this.images
+    //   });
+    // }
+
+    // reader.readAsDataURL(event.target.files);
+
+  }
   constructor(
     private route:ActivatedRoute,
     private router:Router,
@@ -23,21 +57,21 @@ export class RegisteamComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  // photo: File | undefined;
 
-  // onfileselected(event:any){
-  //   console.log(event);
-  //   this.photo=<File>event.target.files[0];
-  // }
   onSubmit(){
-    const data={
-      team_classification:this.formregis.get('teamclassification')?.value,
-      team_name:this.formregis.get('teamname')?.value,
-      team_birth_category:this.formregis.get('teamcategory')?.value
-    }
-    console.warn(data)
+    const formData = new FormData();
+    formData.append('team_classification', this.formregis.get('team_classification')?.value)
+    formData.append('team_name', this.formregis.get('team_name')?.value)
+    formData.append('team_birth_category', this.formregis.get('team_birth_category')?.value)
+    formData.append('files', this.formregis.get('files')?.value)
+    
+    // const data={
+    //   team_classification:this.formregis.get('teamclassification')?.value,
+    //   team_name:this.formregis.get('teamname')?.value,
+    //   team_birth_category:this.formregis.get('teamcategory')?.value
+    // }
     if(confirm("Is the data correct?"+" (this data cannot be changed after inputted)")){
-      this.http.post('https://hercules.aturtoko.id/dct/public/registeam', data).subscribe((res:any)=>
+      this.http.post('https://hercules.aturtoko.id/dct/public/registeam', formData).subscribe((res:any)=>
           { console.log(res);
             if(res.success){
               alert("Success input data");
@@ -51,6 +85,7 @@ export class RegisteamComponent implements OnInit {
     }else{
       alert("Make sure your data is correct")
     }
+
     // this.http.post('https://emaillead.aturtoko.id/api/v1/subscriber', data).subscribe((res:any)=>
     //     { console.log(res);
     //       if(res.success){
