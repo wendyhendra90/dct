@@ -23,7 +23,8 @@ export class RegisteamComponent implements OnInit {
       const file = event.target.files[0];
       this.formregis.get('files')?.setValue(file);
     }
-  
+    console.log(this.formregis.get('files')?.value)
+  }
     //const reader = new FileReader();
     // if(event.target.files && event.target.files.length) {
     //   const [file] = event.target.files;
@@ -47,7 +48,7 @@ export class RegisteamComponent implements OnInit {
 
     // reader.readAsDataURL(event.target.files);
 
-  }
+
   constructor(
     private route:ActivatedRoute,
     private router:Router,
@@ -57,7 +58,11 @@ export class RegisteamComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+    // const data={
+    //   team_classification:this.formregis.get('teamclassification')?.value,
+    //   team_name:this.formregis.get('teamname')?.value,
+    //   team_birth_category:this.formregis.get('teamcategory')?.value
+    // }
   onSubmit(){
     const formData = new FormData();
     formData.append('team_classification', this.formregis.get('team_classification')?.value)
@@ -65,11 +70,7 @@ export class RegisteamComponent implements OnInit {
     formData.append('team_birth_category', this.formregis.get('team_birth_category')?.value)
     formData.append('files', this.formregis.get('files')?.value)
     
-    // const data={
-    //   team_classification:this.formregis.get('teamclassification')?.value,
-    //   team_name:this.formregis.get('teamname')?.value,
-    //   team_birth_category:this.formregis.get('teamcategory')?.value
-    // }
+
     if(confirm("Is the data correct?"+" (this data cannot be changed after inputted)")){
       this.http.post('https://hercules.aturtoko.id/dct/public/registeam', formData).subscribe((res:any)=>
           { console.log(res);

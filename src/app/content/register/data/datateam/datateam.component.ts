@@ -17,7 +17,7 @@ export interface datateam {
 
 export class DatateamComponent implements OnInit {
   authenticated=false;
-  displayedColumns: string[] = ['id', 'team_name', 'team_classification'];
+  displayedColumns: string[] = ['id', 'team_name', 'team_classification','files'];
   response:any;
   dataSource = new MatTableDataSource < datateam > ();
   constructor(
