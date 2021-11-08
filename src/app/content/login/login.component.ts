@@ -23,17 +23,6 @@ export class LoginComponent implements OnInit {
 
   }
   onSubmit(){
-    // const data={
-    //   username:this.formregis.get('username')?.value,
-    //   password:this.formregis.get('password')?.value
-    // }
-    // localStorage.setItem('token','tes')
-    // if(this.formregis.get('username')?.value=='admindct'){
-    //               localStorage.setItem('role','admin')
-    //             }else{
-    //               localStorage.setItem('role','user')
-    //             }
-    
     if(this.formregis.get('username')?.value!='' && this.formregis.get('password')?.value!=''){
       const data={
         username:this.formregis.get('username')?.value,
