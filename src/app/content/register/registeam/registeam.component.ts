@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-registeam',
@@ -9,11 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./registeam.component.css']
 })
 export class RegisteamComponent implements OnInit {
-  formregis=new FormGroup({
+  formregis=this.fb.group({
     team_classification: new FormControl(''),
     team_name: new FormControl(''),
     team_birth_category: new FormControl(''),
-    files:new FormControl('')
+    files:['',
+    [Validators.required, 
+      RxwebValidators.extension({extensions:["zip"]})]]
   });
   photo: string ;
   images: any ;
@@ -37,7 +40,6 @@ export class RegisteamComponent implements OnInit {
     //   };
     // }
 
-
     // reader.onload = (event: any) => {
     //   this.images.push(event.target.result);
 
@@ -48,21 +50,16 @@ export class RegisteamComponent implements OnInit {
 
     // reader.readAsDataURL(event.target.files);
 
-
   constructor(
     private route:ActivatedRoute,
     private router:Router,
     private http: HttpClient,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
 
   }
-    // const data={
-    //   team_classification:this.formregis.get('teamclassification')?.value,
-    //   team_name:this.formregis.get('teamname')?.value,
-    //   team_birth_category:this.formregis.get('teamcategory')?.value
-    // }
   onSubmit(){
     const formData = new FormData();
     formData.append('team_classification', this.formregis.get('team_classification')?.value)
@@ -86,24 +83,7 @@ export class RegisteamComponent implements OnInit {
     }else{
       alert("Make sure your data is correct")
     }
-
-    // this.http.post('https://emaillead.aturtoko.id/api/v1/subscriber', data).subscribe((res:any)=>
-    //     { console.log(res);
-    //       if(res.success){
-    //           this.router.navigate(['/done',{nama:this.aFormGroup.get('name')?.value,
-    //             email:this.aFormGroup.get('email')?.value}]);
-    //         // setTimeout(() => {
-    //         //   console.log('sleep');
-    //         //   //put ur code here
-    //         //   // And any other code that should run only after 5s
-    //         // }, 5000);
-    //       }else{
-    //         alert("Error: "+res.message+"\nHubungi Admin")//confirm|alert
-    //       }
-    //     },(err:any)=>{
-    //       console.error(err);
-    //       console
-    //     }
-    //   )
   }
 }
+
+

@@ -33,7 +33,6 @@ export class DatateamComponent implements OnInit {
       this.authenticated = false;
     }
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist?order=team_name').subscribe((res: any) => {
-      //console.log(res);
       this.response = res.data;
       this.dataSource = new MatTableDataSource<datateam>(res.data.data);
 
@@ -45,7 +44,6 @@ export class DatateamComponent implements OnInit {
   isloading = false;
   applyFilter(filtervalue: string) {
     this.isloading = true
-    //this.dataSource.filter=filtervalue.trim().toLowerCase();
     let params = new HttpParams();
     params = params.append('search', String(filtervalue));
     params = params.append('filter', String('team_name'));
@@ -85,7 +83,7 @@ export class DatateamComponent implements OnInit {
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist?',
       { params }).subscribe((response: any) => {
         console.log(response)
-        const extension = 'zip';
+        const extension = response.data.data[0].file_name.split('.').pop();;
         if (extension === 'zip') {
           saveAs(this.b64toFile(response.data.data[0].files, response.data.data[0].file_name, 'application/zip'));
         }

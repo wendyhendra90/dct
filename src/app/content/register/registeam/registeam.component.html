@@ -32,7 +32,10 @@
 
                   <div class="form-group">
                     <label for="files"><b>Choose File</b></label>
-                    <input type="file"  id="files" (change)="onFileChange($event)" formControlName="files" class="form-control" loading='lazy'>
+                    <input type="file"  id="files" formControlName="files" 
+                    accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed" 
+                    (change)="onFileChange($event)" 
+                    class="form-control">
                 </div>
                 
                 <div class="info row mt-2">
