@@ -23,23 +23,25 @@ export class DataplayerComponent implements OnInit {
   constructor(
     private http:HttpClient
   ) { }
-  authenticated=false;
+  authenticated=false;isloading = false;
   ngOnInit(): void {
+    
     if(localStorage.getItem('role')=='admin'){
       this.authenticated=true;
     }else{
       this.authenticated=false;
     }
-
+    this.isloading = true;
     // dataplayer
     this.http.get('https://hercules.aturtoko.id/dct/public/dataplayer').subscribe((res:any)=>
-          { 
+          {
             this.response=res.data;
             this.dataSource=new MatTableDataSource <dataplayer> (res.data.data);
           },(err:any)=>{
             console.error(err);
             alert(err)
           })
+          this.isloading = false;
   }
 
   applyFilter(filtervalue:string){
@@ -70,6 +72,7 @@ export class DataplayerComponent implements OnInit {
     params = params.append('search', this.search);
     params = params.append('filter', this.filter);
     params = params.append('order', String('team_name'));
+    this.isloading=true;
     this.http.get('https://hercules.aturtoko.id/dct/public/dataplayer',{params}).subscribe((res:any)=>
     {
       this.response=res.data;
@@ -79,5 +82,6 @@ export class DataplayerComponent implements OnInit {
             console.error(err);
             alert(err)
     })
+    this.isloading=false;
   }
 }

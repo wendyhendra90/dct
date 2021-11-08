@@ -20,13 +20,14 @@ export class DatanonplayerComponent implements OnInit {
     private http:HttpClient
   ) { }
 
-  authenticated=false;
+  authenticated=false;isloading = false;
   ngOnInit(): void {
     if(localStorage.getItem('role')=='admin'){
       this.authenticated=true;
     }else{
       this.authenticated=false;
     }
+    this.isloading=true;
     this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer').subscribe((res:any)=>
           { 
             this.response=res.data;
@@ -35,6 +36,7 @@ export class DatanonplayerComponent implements OnInit {
               console.error(err);
               alert(err)
             })
+            this.isloading=false;
   }
   filter: any = 'dct_registered_number';search:any='';
   applyFilter(filtervalue:string){
@@ -43,6 +45,7 @@ export class DatanonplayerComponent implements OnInit {
     params=params.append('search',this.search);
     params=params.append('filter',this.filter);
     params=params.append('order',String('dct_registered_number'));
+    this.isloading=true;
     this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer',{params}).subscribe((res:any)=>
     {
       this.response=res.data;
@@ -52,6 +55,7 @@ export class DatanonplayerComponent implements OnInit {
             console.error(err);
             alert(err)
     })
+    this.isloading=false
   }
   pageEvent:PageEvent;
   onPaginateChange(event:PageEvent){
@@ -64,6 +68,7 @@ export class DatanonplayerComponent implements OnInit {
     params = params.append('search', this.search);
     params = params.append('filter', this.filter);
     params = params.append('order', this.filter);
+    this.isloading=true;
     this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer',{params}).subscribe((res:any)=>
     {
       this.response=res.data;
@@ -73,5 +78,6 @@ export class DatanonplayerComponent implements OnInit {
             console.error(err);
             alert(err)
     })
+    this.isloading=false;
   }
 }

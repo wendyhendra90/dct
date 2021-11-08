@@ -38,6 +38,7 @@ export class DatateamComponent implements OnInit {
     } else {
       this.authenticated = false;
     }
+    this.isloading=true;
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist?order=team_name').subscribe((res: any) => {
       this.response = res.data;
       this.dataSource = new MatTableDataSource<datateam>(res.data.data);
@@ -46,27 +47,29 @@ export class DatateamComponent implements OnInit {
       console.error(err);
       alert(err)
     })
+    this.isloading = false;
   }
 
   applyFilter(filtervalue: string) {
+    this.isloading = true;
     this.search=filtervalue;
-    this.isloading = true
     let params = new HttpParams();
     params = params.append('search', this.search);
     params = params.append('filter', this.filter);
     params = params.append('order', String('team_name'));
+    
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist', { params }).subscribe((res: any) => {
-      this.isloading = false
       this.response = res.data;
       this.dataSource = new MatTableDataSource<datateam>(res.data.data);
-
     }, (err: any) => {
       console.error(err);
       alert(err)
     })
+    this.isloading = false
   }
   pageEvent: PageEvent;
   onPaginateChange(event: PageEvent) {
+    this.isloading = true;
     let params = new HttpParams();
     let page = event.pageIndex;
     let size = event.pageSize;
@@ -83,6 +86,7 @@ export class DatateamComponent implements OnInit {
       console.error(err);
       alert(err)
     })
+    this.isloading=false;
   }
 
   //download file
