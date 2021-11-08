@@ -11,7 +11,7 @@ mat-toolbar{
 .spacer{
     flex:1 1 auto;
 }
-@media (max-width:1000px){
+@media (max-width:900px){
     .header{
         display: none;
     }
@@ -19,7 +19,7 @@ mat-toolbar{
         width: 68px;height: 73px;
     }
 }
-@media (min-width:1000px){
+@media (min-width:900px){
     mat-sidenav-container{
         display: none;
     }
