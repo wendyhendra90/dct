@@ -1,5 +1,5 @@
 .form{
-    width: 40%;
+    width: 50%;
     margin: auto;
     border: 1px lightgrey solid;
 }
@@ -11,7 +11,18 @@
 button{
     background-color: black;color: white;
 }
-@media(max-width:700px){
+.info{
+    width: 100%;
+    margin: auto;
+    font-size: 12px;
+}
+.info .col{
+    padding-left: 5px;padding-right: 5px;
+}
+.col li{
+    margin-left: 7%;
+}
+@media(max-width:850px){
     .form-control{
         width: 85%;
         font-size: 14px;
@@ -21,6 +32,9 @@ button{
     }
     label{
         font-size: 14px;
+    }
+    .col li{
+        margin-left: 0%;
     }
 }
 @media (max-width:500px) {

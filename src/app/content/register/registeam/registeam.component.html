@@ -32,7 +32,36 @@
 
                   <div class="form-group">
                     <label for="files"><b>Choose File</b></label>
-                    <input type="file"  id="files" (change)="onFileChange($event)" formControlName="files" class="form-control">
+                    <input type="file"  id="files" (change)="onFileChange($event)" formControlName="files" class="form-control" loading='lazy'>
+                </div>
+                
+                <div class="info row mt-2">
+                  <h3><b>Upload in zip files</b><sup style="color: red;">*</sup></h3>
+                  <div class='col'>
+                    <h4>File Player</h4>
+                    <ol class='mx-auto text-lg-start'>
+                      <li>Pas Photo</li>
+                      <li>Scan Akta Kelahiran</li>
+                      <li>Scan Ijazah Terakhir</li>
+                      <li>Scan Sertifikat Vaksin Covid-19</li>
+                      <li>Scan Kartu Keluarga </li>
+                      <li>Scan KTP Ayah</li>
+                      <li>Scan KTP Ibu</li>
+                      <li>Scan Passport(jika ada)</li>
+                      <li>Scan Kartu BPJS/KIS(jika ada)</li>
+                      <li>Photo 1 badan menggunakan Jersey Team</li>
+                    </ol>
+                  </div>
+                  <div class='col'>
+                    <h4>File Non-Player</h4>
+                    <ol class='mx-auto text-lg-start'>
+                      <li>Pas Photo</li>
+                      <li>Scan Sertifikat Vaksin Covid-19</li>
+                      <li>Scan KTP / ID</li>
+                      <li>Scan Passport(jika ada)</li>
+                      <li>Scan Kartu BPJS/KIS(jika ada)</li>
+                    </ol>
+                  </div>
                 </div>
                 
                   <div class="mt-3 mb-2">
