@@ -87,8 +87,6 @@ export class DatateamComponent implements OnInit {
       { params }).subscribe((response: any) => {
         const extension = response.data.data[0].file_name.split('.').pop();
         if (extension === 'zip') {
-          const theData = atob(response.data.data[0].files);
-          let blob = new Blob([theData], { type: 'application/gzip' })
           saveAs(this.b64toFile(response.data.data[0].files, response.data.data[0].file_name, 'application/zip'));
         }
       }, (err: any) => { console.log('Error downloading the file') }
