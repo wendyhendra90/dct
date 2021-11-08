@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
               alert("Error: "+res.message+"\nHubungi Admin");
             }
           },(err:any)=>{
+            alert(err.error.error.username)
             console.error(err);
           })
 
