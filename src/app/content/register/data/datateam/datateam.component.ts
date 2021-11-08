@@ -27,6 +27,12 @@ export class DatateamComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getdatateam()
+  }
+  isloading = false;
+  //core
+  filter: any = 'team_name';search:any='';
+  getdatateam(){
     if (localStorage.getItem('role') == 'admin') {
       this.authenticated = true;
     } else {
@@ -41,12 +47,13 @@ export class DatateamComponent implements OnInit {
       alert(err)
     })
   }
-  isloading = false;
+
   applyFilter(filtervalue: string) {
+    this.search=filtervalue;
     this.isloading = true
     let params = new HttpParams();
-    params = params.append('search', String(filtervalue));
-    params = params.append('filter', String('team_name'));
+    params = params.append('search', this.search);
+    params = params.append('filter', this.filter);
     params = params.append('order', String('team_name'));
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist', { params }).subscribe((res: any) => {
       this.isloading = false
@@ -66,6 +73,9 @@ export class DatateamComponent implements OnInit {
     page = page + 1;
     params = params.append('page', String(page));
     params = params.append('limit', String(size));
+    params = params.append('search', this.search);
+    params = params.append('filter', this.filter);
+    params = params.append('order', String('team_name'));
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist', { params }).subscribe((res: any) => {
       this.response = res.data;
       this.dataSource = new MatTableDataSource<datateam>(res.data.data);
@@ -75,6 +85,7 @@ export class DatateamComponent implements OnInit {
     })
   }
 
+  //download file
   downloadfiles(id: number) {
     let params = new HttpParams();
     params = params.append('filter', 'id');

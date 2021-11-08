@@ -31,7 +31,7 @@ export class DataplayerComponent implements OnInit {
       this.authenticated=false;
     }
 
-    //dataplayer
+    // dataplayer
     this.http.get('https://hercules.aturtoko.id/dct/public/dataplayer').subscribe((res:any)=>
           { 
             this.response=res.data;
@@ -43,6 +43,7 @@ export class DataplayerComponent implements OnInit {
   }
 
   applyFilter(filtervalue:string){
+    this.search=filtervalue;
     let params=new HttpParams();
     params=params.append('search',String(filtervalue));
     params=params.append('filter',String('team_name'));
@@ -58,6 +59,7 @@ export class DataplayerComponent implements OnInit {
     })
   }
   pageEvent:PageEvent;
+  filter: any = 'team_name';search:any='';
   onPaginateChange(event:PageEvent){
     let params = new HttpParams();
     let page=event.pageIndex;
@@ -65,6 +67,9 @@ export class DataplayerComponent implements OnInit {
     page=page+1;
     params = params.append('page', String(page));
     params = params.append('limit', String(size));
+    params = params.append('search', this.search);
+    params = params.append('filter', this.filter);
+    params = params.append('order', String('team_name'));
     this.http.get('https://hercules.aturtoko.id/dct/public/dataplayer',{params}).subscribe((res:any)=>
     {
       this.response=res.data;

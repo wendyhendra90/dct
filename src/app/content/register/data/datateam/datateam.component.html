@@ -53,7 +53,8 @@
     <mat-paginator
     [length]="response?.total"
     [pageSize]="response?.per_page"
-    (page)="pageEvent=$event;onPaginateChange($event)"
+    (page)="pageEvent=$event;
+    onPaginateChange($event)"
     showFirstLastButtons></mat-paginator>
   </div>
 </div>

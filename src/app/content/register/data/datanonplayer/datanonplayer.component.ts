@@ -36,11 +36,12 @@ export class DatanonplayerComponent implements OnInit {
               alert(err)
             })
   }
-  
+  filter: any = 'dct_registered_number';search:any='';
   applyFilter(filtervalue:string){
+    this.search=filtervalue;
     let params=new HttpParams();
-    params=params.append('search',String(filtervalue));
-    params=params.append('filter',String('dct_registered_number'));
+    params=params.append('search',this.search);
+    params=params.append('filter',this.filter);
     params=params.append('order',String('dct_registered_number'));
     this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer',{params}).subscribe((res:any)=>
     {
@@ -60,6 +61,9 @@ export class DatanonplayerComponent implements OnInit {
     page=page+1;
     params = params.append('page', String(page));
     params = params.append('limit', String(size));
+    params = params.append('search', this.search);
+    params = params.append('filter', this.filter);
+    params = params.append('order', this.filter);
     this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer',{params}).subscribe((res:any)=>
     {
       this.response=res.data;
