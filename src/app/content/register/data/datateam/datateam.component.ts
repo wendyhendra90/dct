@@ -19,7 +19,7 @@ export interface datateam {
 
 export class DatateamComponent implements OnInit {
   authenticated = false;
-  displayedColumns: string[] = ['id', 'team_name', 'team_classification', 'files', 'downloadfiles'];
+  displayedColumns: string[] = ['id', 'team_name', 'team_classification', 'downloadfiles'];
   response: any;
   dataSource = new MatTableDataSource<datateam>();
   constructor(
@@ -83,7 +83,7 @@ export class DatateamComponent implements OnInit {
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist?',
       { params }).subscribe((response: any) => {
         console.log(response)
-        const extension = response.data.data[0].file_name.split('.').pop();;
+        const extension = response.data.data[0].file_name.split('.').pop();
         if (extension === 'zip') {
           saveAs(this.b64toFile(response.data.data[0].files, response.data.data[0].file_name, 'application/zip'));
         }

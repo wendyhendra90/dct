@@ -18,10 +18,12 @@ export class RegisteamComponent implements OnInit {
     [Validators.required, 
       RxwebValidators.extension({extensions:["zip"]})]]
   });
-  photo: string ;
   images: any ;
-
+  extension:any=null;
   onFileChange(event:any) {
+    console.log(event)
+    this.extension = event.path[0].files[0].name.split('.').pop();
+    console.log(this.extension)
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.formregis.get('files')?.setValue(file);
@@ -47,7 +49,6 @@ export class RegisteamComponent implements OnInit {
     //     files: this.images
     //   });
     // }
-
     // reader.readAsDataURL(event.target.files);
 
   constructor(
@@ -78,6 +79,7 @@ export class RegisteamComponent implements OnInit {
               alert("Error: "+res.message+"\nContact Admin");
             }
           },(err:any)=>{
+            alert("Error: "+err.status+"\nContact Admin");
             console.error(err);
           })
     }else{

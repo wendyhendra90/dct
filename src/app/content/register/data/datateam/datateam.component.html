@@ -33,18 +33,17 @@
         <td mat-cell *matCellDef="let element"> {{element.team_classification}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="files">
+      <!-- <ng-container matColumnDef="files">
         <th mat-header-cell *matHeaderCellDef> Logo </th>
         <td mat-cell *matCellDef="let element"> 
-          
-          <img *ngIf="element.files" src="data:image/png;base64,{{element.files}}" style="width: 75px;height: 75px;"> </td>
-          
-      </ng-container>
+        <img *ngIf="element.files" src="data:image/png;base64,{{element.files}}" style="width: 75px;height: 75px;"> </td>
+      </ng-container> -->
       
       <ng-container matColumnDef="downloadfiles">
-        <th mat-header-cell *matHeaderCellDef> Download Files </th>
-        <td mat-cell *matCellDef="let element"> 
-          <button mat-button *ngIf="element.files" (click)="downloadfiles(element.id)">Download</button>
+          <th mat-header-cell *matHeaderCellDef> Download Files </th>
+          <td mat-cell *matCellDef="let element">
+          <button *ngIf="element.files&&authenticated" mat-button (click)="downloadfiles(element.id)">Download</button>
+          </td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
