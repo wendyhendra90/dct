@@ -71,21 +71,21 @@ export class DatateamComponent implements OnInit {
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist', { params }).subscribe((res: any) => {
       this.response = res.data;
       this.dataSource = new MatTableDataSource<datateam>(res.data.data);
-
     }, (err: any) => {
       console.error(err);
       alert(err)
     })
   }
-  imgSrc: any;
+
   downloadfiles(id: number) {
     let params = new HttpParams();
-    params = params.append('filter', String('id'));
+    params = params.append('filter', 'id');
     params = params.append('search', id);
 
-    this.http.get('https://hercules.aturtoko.id/dct/public/datateam',
+    this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist?',
       { params }).subscribe((response: any) => {
-        const extension = response.data.data[0].file_name.split('.').pop();
+        console.log(response)
+        const extension = 'zip';
         if (extension === 'zip') {
           saveAs(this.b64toFile(response.data.data[0].files, response.data.data[0].file_name, 'application/zip'));
         }
