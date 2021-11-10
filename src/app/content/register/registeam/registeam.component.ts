@@ -10,13 +10,12 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators';
   styleUrls: ['./registeam.component.css']
 })
 export class RegisteamComponent implements OnInit {
+  isloading=false;
   formregis=this.fb.group({
     team_classification: new FormControl(''),
     team_name: new FormControl(''),
     team_birth_category: new FormControl(''),
-    files:['',
-    [Validators.required, 
-      RxwebValidators.extension({extensions:["zip"]})]]
+    files:new FormControl('')
   });
   images: any ;
   extension:any=null;
@@ -70,21 +69,26 @@ export class RegisteamComponent implements OnInit {
     
 
     if(confirm("Is the data correct?"+" (this data cannot be changed after inputted)")){
+      this.isloading=true;
       this.http.post('https://hercules.aturtoko.id/dct/public/registeam', formData).subscribe((res:any)=>
           { console.log(res);
             if(res.success){
+              this.isloading=false;
               alert("Success input data");
               this.router.navigate(['/doneregis']);
             }else{
+              this.isloading=false;
               alert("Error: "+res.message+"\nContact Admin");
             }
           },(err:any)=>{
+            this.isloading=false;
             alert("Error: "+err.status+"\nContact Admin");
             console.error(err);
           })
     }else{
       alert("Make sure your data is correct")
     }
+
   }
 }
 
