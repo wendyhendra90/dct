@@ -23,7 +23,7 @@ export class DataplayerComponent implements OnInit {
   constructor(
     private http:HttpClient
   ) { }
-  authenticated=false;isloading = false;
+  authenticated=false;isloading :boolean= false;
   ngOnInit(): void {
     
     if(localStorage.getItem('role')=='admin'){
@@ -37,14 +37,16 @@ export class DataplayerComponent implements OnInit {
           {
             this.response=res.data;
             this.dataSource=new MatTableDataSource <dataplayer> (res.data.data);
+            this.isloading = false;
           },(err:any)=>{
             console.error(err);
-            alert(err)
+            alert(err);
+            this.isloading = false;
           })
-          this.isloading = false;
   }
 
   applyFilter(filtervalue:string){
+    this.isloading=true;
     this.search=filtervalue;
     let params=new HttpParams();
     params=params.append('search',String(filtervalue));
@@ -54,15 +56,17 @@ export class DataplayerComponent implements OnInit {
     {
       this.response=res.data;
            this.dataSource=new MatTableDataSource <dataplayer> (res.data.data);
-          console.log(this.dataSource);
+           this.isloading = false;
           },(err:any)=>{
             console.error(err);
-            alert(err)
+            alert(err);
+            this.isloading = false;
     })
   }
   pageEvent:PageEvent;
   filter: any = 'team_name';search:any='';
   onPaginateChange(event:PageEvent){
+    this.isloading=true;
     let params = new HttpParams();
     let page=event.pageIndex;
     let size=event.pageSize;
@@ -72,16 +76,16 @@ export class DataplayerComponent implements OnInit {
     params = params.append('search', this.search);
     params = params.append('filter', this.filter);
     params = params.append('order', String('team_name'));
-    this.isloading=true;
+
     this.http.get('https://hercules.aturtoko.id/dct/public/dataplayer',{params}).subscribe((res:any)=>
     {
       this.response=res.data;
            this.dataSource=new MatTableDataSource <dataplayer> (res.data.data);
-          console.log(this.dataSource);
+           this.isloading=false;
           },(err:any)=>{
             console.error(err);
-            alert(err)
+            alert(err);
+            this.isloading=false;
     })
-    this.isloading=false;
   }
 }

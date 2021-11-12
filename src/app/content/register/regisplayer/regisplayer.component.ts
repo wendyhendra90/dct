@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./regisplayer.component.css']
 })
 export class RegisplayerComponent implements OnInit {
+  isloading:boolean=false;
   formregis=new FormGroup({
     noanggota: new FormControl(''),
     nohp: new FormControl(''),
@@ -32,13 +33,16 @@ export class RegisplayerComponent implements OnInit {
   ) { }
     datateam:any=[];
   ngOnInit(): void {
+    this.isloading=true;
     this.http.get('https://hercules.aturtoko.id/dct/public/datateam').subscribe((res:any)=>
           { console.log(res);
            this.datateam=res.data.data
             console.log(this.datateam)
+            this.isloading=false;
           })
   }
   onSubmit(){
+    this.isloading=true;
     const data={
       dct_registered_number:this.formregis.get('noanggota')?.value,
       phone_number:this.formregis.get('nohp')?.value,
@@ -60,15 +64,19 @@ export class RegisplayerComponent implements OnInit {
       this.http.post('https://hercules.aturtoko.id/dct/public/regisplayer', data).subscribe((res:any)=>
           { console.log(res);
             if(res.success){
+              this.isloading=false;
               alert("Success input data");
               this.router.navigate(['/doneregis']);
             }else{
+              this.isloading=false;
               alert("Error: "+res.message+"\nContact Admin");
             }
           },(err:any)=>{
+            this.isloading=false;
             console.error(err);
           })
     }else{
+      this.isloading=false;
       alert("Make sure your data is correct")
     }
     

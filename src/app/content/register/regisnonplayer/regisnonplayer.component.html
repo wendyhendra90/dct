@@ -39,7 +39,10 @@
                             <option value="Coord. Regional">Coord. Regional</option>
                         </select>
                     </div>
-
+                    <div *ngIf="isloading">
+                        <h2 class="text-center"><b>Uploading data, please wait</b></h2>
+                          <div class="loader m-auto"></div>
+                      </div>
                 <div class="mt-3 mb-2">
                     <button class="btn btn-lg" type="submit">Input</button>
                 </div>

@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./regisnonplayer.component.css']
 })
 export class RegisnonplayerComponent implements OnInit {
+  isloading :boolean=false;
   formregis=new FormGroup({
     noanggota: new FormControl(''),
     kebangsaan: new FormControl(''),
@@ -28,6 +29,7 @@ export class RegisnonplayerComponent implements OnInit {
   }
   
   onSubmit(){
+    this.isloading=true;
     const data={
       dct_registered_number:this.formregis.get('noanggota')?.value,
       nationality:this.formregis.get('kebangsaan')?.value,
@@ -42,15 +44,19 @@ export class RegisnonplayerComponent implements OnInit {
       this.http.post('https://hercules.aturtoko.id/dct/public/regisnonplayer', data).subscribe((res:any)=>
           { console.log(res);
             if(res.success){
+              this.isloading=false;
               alert("Success input data");
               this.router.navigate(['/doneregis']);
             }else{
+              this.isloading=false;
               alert("Error: "+res.message+"\nContact Admin");
             }
           },(err:any)=>{
+            this.isloading=false;
             console.error(err);
           })
     }else{
+      this.isloading=false;
       alert("Make sure your data is correct")
     }
   }

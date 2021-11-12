@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { saveAs } from 'file-saver';
+
+
 export interface datateam {
   id: number;
   team_name: string;
@@ -19,6 +21,7 @@ export interface datateam {
 
 export class DatateamComponent implements OnInit {
   authenticated = false;
+  isloading : boolean = false;
   displayedColumns: string[] = ['id', 'team_name', 'team_classification', 'downloadfiles'];
   response: any;
   dataSource = new MatTableDataSource<datateam>();
@@ -27,32 +30,34 @@ export class DatateamComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getdatateam()
-  }
-  isloading = false;
-  //core
-  filter: any = 'team_name';search:any='';
-  getdatateam(){
     if (localStorage.getItem('role') == 'admin') {
       this.authenticated = true;
     } else {
       this.authenticated = false;
     }
+    this.getdatateam()
+  }
+  //core
+  filter: any = 'team_name';search:any='';
+  getdatateam(){
     this.isloading=true;
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist?order=team_name').subscribe((res: any) => {
       this.response = res.data;
+      console.log(res)
       this.dataSource = new MatTableDataSource<datateam>(res.data.data);
-
+      this.isloading=false;
     }, (err: any) => {
+      this.isloading=false;
       console.error(err);
       alert(err)
     })
-    this.isloading = false;
+    
   }
-
+  
   applyFilter(filtervalue: string) {
-    this.isloading = true;
+    this.isloading=true;
     this.search=filtervalue;
+    let page = 1;
     let params = new HttpParams();
     params = params.append('search', this.search);
     params = params.append('filter', this.filter);
@@ -61,15 +66,16 @@ export class DatateamComponent implements OnInit {
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist', { params }).subscribe((res: any) => {
       this.response = res.data;
       this.dataSource = new MatTableDataSource<datateam>(res.data.data);
+      this.isloading=false;
     }, (err: any) => {
       console.error(err);
-      alert(err)
+      alert(err);
+      this.isloading=false;
     })
-    this.isloading = false
   }
   pageEvent: PageEvent;
   onPaginateChange(event: PageEvent) {
-    this.isloading = true;
+    this.isloading=true;
     let params = new HttpParams();
     let page = event.pageIndex;
     let size = event.pageSize;
@@ -82,15 +88,17 @@ export class DatateamComponent implements OnInit {
     this.http.get('https://hercules.aturtoko.id/dct/public/datateamlist', { params }).subscribe((res: any) => {
       this.response = res.data;
       this.dataSource = new MatTableDataSource<datateam>(res.data.data);
+      this.isloading=false;
     }, (err: any) => {
       console.error(err);
-      alert(err)
+      alert(err);
+      this.isloading=false;
     })
-    this.isloading=false;
   }
 
   //download file
   downloadfiles(id: number) {
+    this.isloading=true;
     let params = new HttpParams();
     params = params.append('filter', 'id');
     params = params.append('search', id);
@@ -101,8 +109,10 @@ export class DatateamComponent implements OnInit {
         const extension = response.data.data[0].file_name.split('.').pop();
         if (extension === 'zip') {
           saveAs(this.b64toFile(response.data.data[0].files, response.data.data[0].file_name, 'application/zip'));
-        }
-      }, (err: any) => { console.log('Error downloading the file') }
+        }this.isloading=false;
+      }, (err: any) => { 
+        console.log('Error downloading the file') 
+        this.isloading=false;}
       )
   }
 

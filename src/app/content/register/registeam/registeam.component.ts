@@ -61,15 +61,14 @@ export class RegisteamComponent implements OnInit {
 
   }
   onSubmit(){
+    this.isloading=true;
     const formData = new FormData();
     formData.append('team_classification', this.formregis.get('team_classification')?.value)
     formData.append('team_name', this.formregis.get('team_name')?.value)
     formData.append('team_birth_category', this.formregis.get('team_birth_category')?.value)
     formData.append('files', this.formregis.get('files')?.value)
-    
 
     if(confirm("Is the data correct?"+" (this data cannot be changed after inputted)")){
-      this.isloading=true;
       this.http.post('https://hercules.aturtoko.id/dct/public/registeam', formData).subscribe((res:any)=>
           { console.log(res);
             if(res.success){

@@ -12,7 +12,12 @@
   <div class="remindermobile">
     <p>Rotate your device for better looks</p>
   </div>
-  <h1 *ngIf="isloading" class="text-center"><b>Loading data table</b></h1>
+  <div *ngIf="isloading">
+    <h1 class="text-center"><b>Loading data table</b>
+      <div class="loader m-auto"></div>
+    </h1>
+  </div>
+  
   <div class="mat-elevation-z8">
     <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" >
 

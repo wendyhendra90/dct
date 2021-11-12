@@ -20,45 +20,49 @@ export class DatanonplayerComponent implements OnInit {
     private http:HttpClient
   ) { }
 
-  authenticated=false;isloading = false;
+  authenticated=false;isloading :boolean= false;
   ngOnInit(): void {
+    this.isloading=true;
     if(localStorage.getItem('role')=='admin'){
       this.authenticated=true;
     }else{
       this.authenticated=false;
     }
-    this.isloading=true;
     this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer').subscribe((res:any)=>
           { 
             this.response=res.data;
-            this.dataSource=new MatTableDataSource <datanonplayer> (res.data.data);}
+            this.dataSource=new MatTableDataSource <datanonplayer> (res.data.data);
+            this.isloading=false;
+          }
             ,(err:any)=>{
               console.error(err);
-              alert(err)
+              alert(err);
+              this.isloading=false;
+
             })
-            this.isloading=false;
   }
   filter: any = 'dct_registered_number';search:any='';
   applyFilter(filtervalue:string){
+    this.isloading=true;
     this.search=filtervalue;
     let params=new HttpParams();
     params=params.append('search',this.search);
     params=params.append('filter',this.filter);
     params=params.append('order',String('dct_registered_number'));
-    this.isloading=true;
     this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer',{params}).subscribe((res:any)=>
     {
       this.response=res.data;
            this.dataSource=new MatTableDataSource <datanonplayer> (res.data.data);
-          console.log(this.dataSource);
+           this.isloading=false;
           },(err:any)=>{
             console.error(err);
-            alert(err)
+            alert(err);
+            this.isloading=false;
     })
-    this.isloading=false
   }
   pageEvent:PageEvent;
   onPaginateChange(event:PageEvent){
+    this.isloading=true;
     let params = new HttpParams();
     let page=event.pageIndex;
     let size=event.pageSize;
@@ -67,17 +71,16 @@ export class DatanonplayerComponent implements OnInit {
     params = params.append('limit', String(size));
     params = params.append('search', this.search);
     params = params.append('filter', this.filter);
-    params = params.append('order', this.filter);
-    this.isloading=true;
+    params = params.append('order', this.filter)
     this.http.get('https://hercules.aturtoko.id/dct/public/datanonplayer',{params}).subscribe((res:any)=>
     {
       this.response=res.data;
            this.dataSource=new MatTableDataSource <datanonplayer> (res.data.data);
-          console.log(this.dataSource);
+            this.isloading=false;
           },(err:any)=>{
             console.error(err);
-            alert(err)
+            alert(err);
+            this.isloading=false;
     })
-    this.isloading=false;
   }
 }

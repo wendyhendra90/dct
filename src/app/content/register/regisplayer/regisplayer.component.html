@@ -4,6 +4,10 @@
             <mat-divider style="color: #2196f3; background-color: #2196f3;height: 2px;width: 20%;margin: auto;" class="mb-3">
             </mat-divider>
         <div class="form mt-2 mb-5">
+            <div *ngIf="isloading">
+                <h2 class="text-center"><b>Loading Team Name</b></h2>
+                  <div class="loader m-auto"></div>
+              </div>
             <form [formGroup]="formregis" (ngSubmit)="onSubmit()" class="text-center" ngNativeValidate>
                 <div class="col2">
                     <div class="form-group">
@@ -72,6 +76,10 @@
                             <!--  pattern="[08][0-9]{9,}" -->
                     </div>
                 </div>
+                <!-- <div *ngIf="isloading">
+                    <h2 class="text-center"><b>Uploading data, please wait</b></h2>
+                      <div class="loader m-auto"></div>
+                  </div> -->
                 <div class="mt-3 mb-2">
                     <button class="btn btn-lg" type="submit">Input</button>
                 </div>

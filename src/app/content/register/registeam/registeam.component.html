@@ -37,7 +37,10 @@
                     (change)="onFileChange($event)" 
                     class="form-control">
                 </div>
-                <div *ngIf="isloading">Uploading data, please wait</div>
+                <div *ngIf="isloading">
+                  <h2 class="text-center"><b>Uploading data, please wait</b></h2>
+                    <div class="loader m-auto"></div>
+                </div>
                 <div class="info row mt-2">
                   <h3><b>Upload in zip files</b><sup style="color: red;">*</sup></h3>
                   <div class='col'>
