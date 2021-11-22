@@ -12,5 +12,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+  slides = [
+    {'image': '../../../assets/sponsor/SIG-1.jpg'}, 
+    {'image': '../../../assets/sponsor/Proteam.png'},
+    {'image': '../../../assets/sponsor/Pegadaian_logo_(2013).svg.png'}
+  ];
 }

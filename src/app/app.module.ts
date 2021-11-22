@@ -21,6 +21,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 import { AuthInterceptor } from './auth.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -44,6 +45,7 @@ import { DatateamComponent } from './content/register/data/datateam/datateam.com
 import { DataplayerComponent } from './content/register/data/dataplayer/dataplayer.component';
 import { DatanonplayerComponent } from './content/register/data/datanonplayer/datanonplayer.component';
 import { RegisterComponent } from './content/login/register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -75,7 +77,8 @@ const material=[
   MatOptionModule,
   MatPaginatorModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatCarouselModule.forRoot()
 ];
 
 @NgModule({
@@ -104,6 +107,7 @@ const material=[
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgbModule,
   ],
   exports:[material],
   providers: [
