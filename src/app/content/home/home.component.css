@@ -15,7 +15,8 @@ p{
     height:160px;
 }
 .carousel-inner img{
-    width:45%;
+    width:50%;
+    max-width: 155px;
 }
 .col-md-4{
     align-self: center;
