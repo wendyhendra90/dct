@@ -9,16 +9,18 @@ p{
 }
 
 .carousel{
-    min-height: 150px;
+    min-height: 160px;
 }
-.carousel img{
-    width: 50%;
-    margin: auto;
+.row{
+    height:160px;
+}
+.carousel-inner img{
+    width:45%;
 }
 .col-md-4{
     align-self: center;
 }
 button{
-    background-color: grey;
+    background-color: lightgray;
     width: 50px;
 }
