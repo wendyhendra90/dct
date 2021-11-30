@@ -32,5 +32,6 @@ p{
 }
 button{
     background-color: lightgray;
-    width: 50px;
+    width: 30px;height: 40px;
+    margin-top: auto;margin-bottom: auto;
 }
