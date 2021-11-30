@@ -1,7 +1,13 @@
 .content{
     width: 80%;
+    height: fit-content;
     margin: auto;
 }
+.video{
+    height: 400px;
+    padding: 0;
+}
+
 p{
     text-align: justify;
     font-size: 16px;
@@ -12,11 +18,14 @@ p{
     min-height: 160px;
 }
 .row{
-    height:160px;
+    height:230px;
 }
 .carousel-inner img{
-    width:45%;
+    width:45%; height: auto;
     max-width: 155px;
+}
+.col-md{
+    align-self: center;
 }
 .col-md-4{
     align-self: center;
